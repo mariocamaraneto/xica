@@ -1,0 +1,3 @@
+#: View/Helper/FormHelper.php:1683 View/Scaffolds/form.ctp:23
+msgid "Submit"
+msgstr "Enviar"

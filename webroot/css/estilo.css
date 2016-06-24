@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+
+.container {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0;
+  margin-left: 0;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 740px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1160px;
+  }
+}
+
+.botao-superior{
+	font-size: 15px;
+	color: #fff;
+	display: block;
+	font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+	font-weight: normal;
+	padding-left: 0.9375rem;
+	padding: 12px 0 12px 0.9375rem;
+	text-transform: none;
+	width: 100%;
+}
+
+.barra-superior a {
+	font-size: 1.0em		!important;
+}
+
+.botao-sair{
+	float: right;
+	color: #FFF;
+	margin-right: 1em;
+}
+
+a.botao-sair{
+	font-size: 1.3em !important;
+	float: right;
+	display: block;
+	padding-left: 0;
+}
+
+.botao-pesquisar button{
+	margin:auto;
+	margin-top: 0.3em;
+	font-size: 0.75em;
+	padding: 0.5em 0.3em 0.6em 0.3em;
+	border-radius: 0.8em;
+	background: #116D76;
+}
