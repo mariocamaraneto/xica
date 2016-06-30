@@ -120,13 +120,7 @@ class VendasController extends AppController
      */
     public function realiza()
     {
-    	$this->paginate = [
-    			'contain' => ['Clientes', 'Funcionarios']
-    	];
-    	$vendas = $this->paginate($this->Vendas);
-    	
-    	$this->set(compact('vendas'));
-    	$this->set('_serialize', ['vendas']);
+
     }
     
 }

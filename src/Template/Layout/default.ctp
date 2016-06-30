@@ -59,7 +59,7 @@ $sysDescription = 'Sistema Brechó da Xica';
         		<li>
         			<?php  echo $this->Html->link('Vendas', [
 							        				'controller' => 'Vendas',
-							        				'action' => 'index',
+							        				'action' => 'realiza',
 							        				'_full' => true,
         											]
         						); ?>

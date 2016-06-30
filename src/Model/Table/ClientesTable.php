@@ -94,4 +94,5 @@ class ClientesTable extends Table
         $rules->add($rules->isUnique(['email']));
         return $rules;
     }
+
 }

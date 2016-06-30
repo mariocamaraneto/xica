@@ -25,7 +25,7 @@ class FornecedoresController extends AppController
 					'conditions'=>["Fornecedores.nome LIKE" => '%'.$this->request->query('search').'%'],
     			];
     		$fornecedores = $this->paginate($this->Fornecedores);
-    		if(!$produtos->count())
+    		if(!$fornecedores->count())
     		{
     			//não é uma mensagem de sucesso mas é mais bonita que aquele vermelhão de erro
     			$this->Flash->success("Nenhuma fornecedora encontrada");
@@ -68,10 +68,10 @@ class FornecedoresController extends AppController
         if ($this->request->is('post')) {
             $fornecedor = $this->Fornecedores->patchEntity($fornecedor, $this->request->data);
             if ($this->Fornecedores->save($fornecedor)) {
-                $this->Flash->success(__('The fornecedor has been saved.'));
+                $this->Flash->success(__('O fornecedor foi cadastrado com sucesso.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The fornecedor could not be saved. Please, try again.'));
+                $this->Flash->error(__('As informações do fornecedor não foram salvas. Confira os dados e tente novamente.'));
             }
         }
         $this->set(compact('fornecedor'));
@@ -93,10 +93,10 @@ class FornecedoresController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $fornecedor = $this->Fornecedores->patchEntity($fornecedor, $this->request->data);
             if ($this->Fornecedores->save($fornecedor)) {
-                $this->Flash->success(__('The fornecedor has been saved.'));
+                $this->Flash->success(__('As alterações foram salvas com sucesso.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The fornecedor could not be saved. Please, try again.'));
+                $this->Flash->error(__('As alterações não foram salvas. Confira os dados e tente novamente.'));
             }
         }
         $this->set(compact('fornecedor'));
@@ -115,9 +115,9 @@ class FornecedoresController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $fornecedor = $this->Fornecedores->get($id);
         if ($this->Fornecedores->delete($fornecedor)) {
-            $this->Flash->success(__('The fornecedor has been deleted.'));
+            $this->Flash->success(__('O fornecedor foi deletado com sucesso'));
         } else {
-            $this->Flash->error(__('The fornecedor could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Esse fornecedor não pode ser deletado.'));
         }
         return $this->redirect(['action' => 'index']);
     }

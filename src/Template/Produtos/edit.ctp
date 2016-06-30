@@ -4,15 +4,10 @@
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $produto->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $produto->id)]
+                ['confirm' => __('Tem certeza que deseja deletar "{0}"?', $produto->nome)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Produtos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedores', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Vendas'), ['controller' => 'Vendas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Venda'), ['controller' => 'Vendas', 'action' => 'add']) ?></li>
-    </ul>
+     </ul>
 </nav>
 <div class="produtos form large-9 medium-8 columns content">
     <?= $this->Form->create($produto) ?>
@@ -29,7 +24,6 @@
             echo $this->Form->input('descricao');
             echo $this->Form->input('fornecedor_id', ['options' => $fornecedores]);
             echo $this->Form->input('quantidade');
-            echo $this->Form->input('vendas._ids', ['options' => $vendas]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -3,8 +3,6 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Funcionario'), ['action' => 'edit', $funcionario->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Funcionario'), ['action' => 'delete', $funcionario->id], ['confirm' => __('Are you sure you want to delete # {0}?', $funcionario->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Funcionario'), ['action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="funcionarios view large-9 medium-8 columns content">

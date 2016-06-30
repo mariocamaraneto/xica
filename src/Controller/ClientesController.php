@@ -18,7 +18,19 @@ class ClientesController extends AppController
      */
     public function index()
     {
-        $clientes = $this->paginate($this->Clientes);
+    	
+    	if ($this->request->query("search"))
+    	{
+    		//Condições de paginate. Ler mais em: http://www.tayron.com.br/blog/121/criando-um-formulario-de-pesquisa-com-cakephp3
+    		$this->paginate = [ 
+    				'conditions' => [ 'Clientes.nome LIKE' => '%'.$this->request->query('search').'%'] 
+		    		];
+    		$clientes = $this->paginate($this->Clientes);
+    	}
+    	else 
+    	{
+    		$clientes = $this->paginate($this->Clientes);
+    	}
 
         $this->set(compact('clientes'));
         $this->set('_serialize', ['clientes']);
@@ -52,10 +64,10 @@ class ClientesController extends AppController
         if ($this->request->is('post')) {
             $cliente = $this->Clientes->patchEntity($cliente, $this->request->data);
             if ($this->Clientes->save($cliente)) {
-                $this->Flash->success(__('The cliente has been saved.'));
+                $this->Flash->success(__('O cliente foi cadastrado com sucesso.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The cliente could not be saved. Please, try again.'));
+                $this->Flash->error(__('O cliente não foi salvo. Confira os dados e tente novamente.'));
             }
         }
         $this->set(compact('cliente'));
@@ -77,10 +89,10 @@ class ClientesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cliente = $this->Clientes->patchEntity($cliente, $this->request->data);
             if ($this->Clientes->save($cliente)) {
-                $this->Flash->success(__('The cliente has been saved.'));
+                $this->Flash->success(__('As alterações foram salvas com sucesso.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The cliente could not be saved. Please, try again.'));
+                $this->Flash->error(__('As alterações não foram salvas. Confira os dados e tente novamente.'));
             }
         }
         $this->set(compact('cliente'));
@@ -99,9 +111,9 @@ class ClientesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $cliente = $this->Clientes->get($id);
         if ($this->Clientes->delete($cliente)) {
-            $this->Flash->success(__('The cliente has been deleted.'));
+            $this->Flash->success(__('O cliente foi deletado com sucesso.'));
         } else {
-            $this->Flash->error(__('The cliente could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Esse cliente não pode ser deletado.'));
         }
         return $this->redirect(['action' => 'index']);
     }

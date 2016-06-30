@@ -38,23 +38,16 @@
                 <th><?= $this->Paginator->sort('nome') ?></th>
                 <th><?= $this->Paginator->sort('quantidade') ?></th>
                 <th><?= $this->Paginator->sort('preco') ?></th>
-                <th><?= $this->Paginator->sort('ranque') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-             <?php  
-//         		if(!$produtos->count()){
-//         			echo "<tr><td>Nenhum resultado encontrado<td></tr>";
-//         		}
-//         	?>
             <?php foreach ($produtos as $produto): ?>
             <tr>
             	<td><?= h($produto->referencia) ?></td>
                 <td><?= h($produto->nome) ?></td>
                 <td><?= $this->Number->format($produto->quantidade) ?></td>
-                <td><?= $this->Number->format($produto->preco) ?></td>
-                <td><?= $this->Number->format($produto->ranque) ?></td>
+                <td><?= $this->Number->currency($produto->preco) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $produto->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id]) ?>

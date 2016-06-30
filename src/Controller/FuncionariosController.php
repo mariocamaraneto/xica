@@ -18,6 +18,7 @@ class FuncionariosController extends AppController
      */
     public function index()
     {
+    	$this->paginate = ['order' => ['Funcionarios.ativo' => 'desc']];
         $funcionarios = $this->paginate($this->Funcionarios);
 
         $this->set(compact('funcionarios'));
@@ -52,10 +53,10 @@ class FuncionariosController extends AppController
         if ($this->request->is('post')) {
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->data);
             if ($this->Funcionarios->save($funcionario)) {
-                $this->Flash->success(__('The funcionario has been saved.'));
+                $this->Flash->success(__('O funcionário foi cadastradi com sucesso'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
+                $this->Flash->error(__('O funcionário não foi salvo. Confira os dados e tente novamente.'));
             }
         }
         $this->set(compact('funcionario'));
@@ -77,10 +78,10 @@ class FuncionariosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->data);
             if ($this->Funcionarios->save($funcionario)) {
-                $this->Flash->success(__('The funcionario has been saved.'));
+                $this->Flash->success(__('As alterações foram salvas com sucesso.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
+                $this->Flash->error(__('As alterações não foram salvas. Confira os dados e tente novamente.'));
             }
         }
         $this->set(compact('funcionario'));
@@ -99,9 +100,9 @@ class FuncionariosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $funcionario = $this->Funcionarios->get($id);
         if ($this->Funcionarios->delete($funcionario)) {
-            $this->Flash->success(__('The funcionario has been deleted.'));
+            $this->Flash->success(__('O funcionário foi deletado com sucesso.'));
         } else {
-            $this->Flash->error(__('The funcionario could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Esse funcionário não pode ser deletado.'));
         }
         return $this->redirect(['action' => 'index']);
     }

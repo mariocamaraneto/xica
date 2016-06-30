@@ -1,4 +1,5 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+
+<nav class="large-2 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Venda'), ['action' => 'add']) ?></li>
@@ -10,45 +11,65 @@
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="vendas index large-9 medium-8 columns content">
-    <h3><?= __('Vendas') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<div class="vendas index large-10 medium-8 columns content">
+    <h3><?= __('Realizando Venda') ?></h3>
+
+
+
+	<!-- 	INICIO - Caixa de pesquisa de produtos -->
+    <div class='row'>
+   		<?php echo $this->Form->create(null, ['type'=>'get', 'url' => false]);?>
+			<div class='large-6 large-offset-4 columns'>
+			    <!-- Pesquisa por nome do fornecedor -->
+			    <?php 
+			    	echo $this->Form->input('pesquisaProduto', ['type'=>'text',
+			    			'label' => false,
+			    			'placeholder' => 'Pesquise seu produto aqui',
+			    	]);
+			    ?>
+		    </div>
+		    <div class='large-2 columns end'>
+			    <?php 
+			    	echo $this->Form->button('Pesquisar', [
+			    			'id'=>'pesquisarBtn', 
+			    			'type' => 'button', 
+			    			'class' => 'button tiny round'
+			    	]);
+			    ?>
+		    </div>
+		<?php echo $this->Form->end();?>
+	</div>
+	<!-- 	FIM - Caixa de pesquisa de produtos -->
+
+
+
+    <table id='tableProdutos'>
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('data') ?></th>
-                <th><?= $this->Paginator->sort('total') ?></th>
-                <th><?= $this->Paginator->sort('desconto') ?></th>
-                <th><?= $this->Paginator->sort('forma_pagamento') ?></th>
-                <th><?= $this->Paginator->sort('cliente_id') ?></th>
-                <th><?= $this->Paginator->sort('funcionarios_id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+            	<th>Ref</th>
+                <th>Nome</th>
+                <th>Preço</th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($vendas as $venda): ?>
+        <tbody id='listaDeProdutos'>
             <tr>
-                <td><?= $this->Number->format($venda->id) ?></td>
-                <td><?= h($venda->data) ?></td>
-                <td><?= $this->Number->format($venda->total) ?></td>
-                <td><?= h($venda->desconto) ?></td>
-                <td><?= h($venda->forma_pagamento) ?></td>
-                <td><?= $venda->has('cliente') ? $this->Html->link($venda->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $venda->cliente->id]) : '' ?></td>
-                <td><?= $venda->has('funcionario') ? $this->Html->link($venda->funcionario->id, ['controller' => 'Funcionarios', 'action' => 'view', $venda->funcionario->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $venda->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $venda->id]) ?>
-                </td>
             </tr>
-            <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
-    </div>
+    
+    
+    <div class='row'>
+	    <div class='large-4 large-offset-8 columns'>
+	    	<ul class="pricing-table">
+	  			<li class="title">Total da Venda</li>
+	 		 	<li class="price" id="valorTotal">R$ 99.99</li>
+	  		</ul>
+	  	</div>
+  	</div>
+  	
+  	<div id="saida"></div>
+    
 </div>
+
+<?php echo $this->Html->script('jquery');?>
+<?php echo $this->Html->script('venda'); ?>
