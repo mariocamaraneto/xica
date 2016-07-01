@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Database\Type;
+use PhpParser\Node\Expr\Cast\Object_;
 
 /**
  * Vendas Controller
@@ -115,7 +117,7 @@ class VendasController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    /*
+    /**
      * Controller responsável por realizar uma venda
      */
     public function realiza()
@@ -123,4 +125,46 @@ class VendasController extends AppController
 
     }
     
+    /**
+     * Controller responsável por finalizar uma venda
+     * realizando algumas validações e efetuando o procedimentos necessários
+     * para a conclusão da venda
+     */
+    public function finaliza(){
+    	
+    	if ($this->request->is('post')){
+    		//recupera os valor enviados por 'post'
+    		$parametros = [];
+	    	$parametros['produtos'] = json_decode($this->request->data['produtos']);
+	    	$parametros['total'] = $this->request->data['total'];
+	    	
+	    	$total = 0;
+	    	foreach ($parametros['produtos'] as $produto){
+	    		$total += $produto->preco; 
+	    	}
+	    	
+	    	//se o total estiver certo continua, senão mostra erro
+	    	if($total == $parametros['total'])
+	    	{
+		    	//armazena isso na sessão para a próxima etapa
+		    	$sessao = $this->request->session();
+	    		$sessao->write('venda', $parametros);
+	    	
+	    		//envia parametros para view
+	    		$this->set($parametros);
+				$this->set('_serialize', ['produtos','total']);
+				return ;
+	    	}
+    	}
+    	
+		//Se não for um requisição 'post', ou seja, acessou a função digitando a action na url direto
+		//Ou algo não deu certo -> validação, sessão, retorna um erro
+		$this->Flash->error("Algo está errado. Realize a venda novamente.");
+		return $this->redirect([
+				'controller' => 'vendas', 
+				'action' => 'realiza'					
+			]);
+
+    }
+
 }
