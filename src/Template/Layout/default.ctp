@@ -30,6 +30,8 @@ $sysDescription = 'Sistema Brechó da Xica';
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('estilo.css')?>
 
+	<?php echo $this->Html->script('jquery');?>
+	<?php echo $this->Html->script('main');?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
