@@ -67,7 +67,6 @@ function pesquisaAjax() {
 		dataType : "json",
 		success : function(data) {
 			produtosRespostasAJAX = data.produtos;
-			console.log(produtosRespostasAJAX);
 			mostraOpcoes(data.produtos);
 		}
 	});
@@ -119,7 +118,7 @@ function atualizaTotal() {
 
 // converte uma entrada no padrão monetário para número
 function dinheiroParaNumero(valor) {
-	valor = valor.replace("R$ ", "");
+	valor = valor.replace("R$", "");
 	valor = valor.replace(",", ".");
 	return parseFloat(valor);
 }
@@ -127,7 +126,7 @@ function dinheiroParaNumero(valor) {
 // converte um número para o padrão monetário
 function numeroParaDinheiro(numero) {
 	numero = numero.toFixed(2);
-	var preco = "R$ " + numero;
+	var preco = "R$" + numero;
 	return preco.replace(".", ",");
 }
 

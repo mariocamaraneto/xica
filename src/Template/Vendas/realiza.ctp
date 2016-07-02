@@ -7,15 +7,14 @@
 
 	<!-- 	INICIO - Caixa de pesquisa de produtos -->
 	<div class='row'>
-   		<?php
-					
-echo $this->Form->create ( null, [ 
+   			<?php	echo $this->Form->create ( null, [ 
 							'url' => false,
-							'id' => 'pesquisaProdutoForm' 
+							'id' => 'pesquisaProdutoForm',
+							'autocomplete'=>"off",
 					] );
 					?>
 			<div class='large-6 large-offset-4 columns'>
-			<!-- Pesquisa por nome do fornecedor -->
+			<!-- Pesquisa por nome do produto -->
 			    <?php
 							echo $this->Form->input ( 'palavraPesquisaProduto', [ 
 									'type' => 'text',
@@ -68,27 +67,28 @@ echo $this->Form->create ( null, [
 
 
 
-<!-- The Modal - Painel suspenso que mostra os produtos resultados da pesquisa  -->
-<div id="myModal" class="modal">
-
-	<!-- Modal content -->
-	<div class="modal-content">
-		<span class="close" id="fecharModal">x</span>
-		<table id='tableProdutos'>
-			<thead>
-				<tr>
-					<th>Ref</th>
-					<th>Nome</th>
-					<th>Preço</th>
-				</tr>
-			</thead>
-			<tbody id='listaDeProdutosModal'>
-				<!-- A lista de produtos será inserido aqui -->
-			</tbody>
-		</table>
+<!-- INICIO - Painel suspenso que mostra os produtos resultados da pesquisa  -->
+	<div id="myModal" class="modal">
+	
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close" id="fecharModal">x</span>
+			<table id='tableProdutos'>
+				<thead>
+					<tr>
+						<th>Ref</th>
+						<th>Nome</th>
+						<th>Preço</th>
+					</tr>
+				</thead>
+				<tbody id='listaDeProdutosModal'>
+					<!-- A lista de produtos será inserido aqui -->
+				</tbody>
+			</table>
+		</div>
+	
 	</div>
+<!-- FIM - Painel suspenso que mostra os produtos resultados da pesquisa  -->
 
-</div>
-
-<?php echo $this->Html->script('venda'); ?>
+<?php echo $this->Html->script('realizaVenda'); ?>
 <?php echo $this->Html->script('jquery.redirect'); ?>
