@@ -167,4 +167,24 @@ class VendasController extends AppController
 
     }
 
+    function conclui(){
+    	if ($this->request->is('post')){
+    		//recupera os valor enviados por 'post'
+    		$parametros = [];
+    		$parametros['cliente'] = json_decode($this->request->data['cliente']);
+    		$parametros['desconto'] = $this->request->data['desconto'];
+    		$parametros['formaPagamento'] = $this->request->data['formaPagamento'];
+    		
+    		//recupera produtos da sessão
+    		$sessao = $this->request->session();
+    		$parametros['produtos'] = $sessao->read('venda')['produtos'];
+    		$parametros['total'] = $sessao->read('venda')['total'];
+    		
+    		
+    		//envia parametros para view
+    		$this->set($parametros);
+    		$this->set('_serialize', ['cliente','desconto','formaPagamento', 'produtos', 'total']);
+    	}
+    }
+    
 }
