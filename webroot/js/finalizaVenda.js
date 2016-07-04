@@ -52,7 +52,7 @@ function pesquisaAjax() {
 	}
 
 	$.ajax({
-		url : "http://localhost/xica/clientes.json?search=" + palavraPesquisa,
+		url : "/clientes.json?search=" + palavraPesquisa,
 		dataType : "json",
 		success : function(data) {
 			clientesRespostasAJAX = data.clientes;
@@ -111,7 +111,7 @@ function concluiVenda() {
 	dadosAJAX.desconto = descontoVenda;
 	dadosAJAX.formaPagamento = formaPagamento;
 	
-	$.redirect("http://localhost/xica/vendas/conclui",dadosAJAX);
+	$.redirect("/vendas/conclui",dadosAJAX);
 
 }
 

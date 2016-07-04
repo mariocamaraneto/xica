@@ -168,7 +168,7 @@ class VendasController extends AppController
 
     }
 
-    function conclui(){
+    public function conclui(){
     	if ($this->request->is('post')){
     		//recupera os valor enviados por 'post'
     		$parametros = [];
@@ -217,6 +217,26 @@ class VendasController extends AppController
     		$this->set($parametros);
     		$this->set('_serialize', ['cliente','desconto','formaPagamento', 'produtos', 'total']);
     	}
+    	else 
+    	{
+    		$this->Flash->error("É necessário selecionar os produtos primeiro.");
+    		$this->redirect(['action'=>'realiza']);
+    	}
+    }
+    
+    /**
+     * Função responsável por realizar a pesquisa de produtos 
+     */
+    public function searchProdutos(){
+    	if( $this->request->query('search') )
+    	{
+    		$produtosTable = TableRegistry::get('Produtos');
+    		$produtos = $produtosTable->find("GeralPonderado", ['pesquisa' =>$this->request->query('search')] );
+    		$produtos->where(['em_estoque'=>1]);
+    		$this->set(compact('produtos'));
+    		$this->set('_serialize', ['produtos']);
+    	}
+    	
     }
     
 }

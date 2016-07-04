@@ -90,8 +90,11 @@
 					<!-- A lista de produtos será inserido aqui -->
 				</tbody>
 			</table>
+			<div style="font-size: 0.8em;">
+				<br><br>
+				*Lembrando que nessa janela irão aparecer apenas os produtos que estão em estoque
+			</div>
 		</div>
-	
 	</div>
 <!-- FIM - Painel suspenso que mostra os produtos resultados da pesquisa  -->
 
