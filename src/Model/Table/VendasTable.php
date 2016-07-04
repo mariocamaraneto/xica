@@ -33,7 +33,6 @@ class VendasTable extends Table
 
         $this->belongsTo('Clientes', [
             'foreignKey' => 'cliente_id',
-            'joinType' => 'INNER'
         ]);
         $this->belongsTo('Funcionarios', [
             'foreignKey' => 'funcionarios_id',

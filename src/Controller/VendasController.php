@@ -2,8 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Database\Type;
-use PhpParser\Node\Expr\Cast\Object_;
 use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 
@@ -192,7 +190,7 @@ class VendasController extends AppController
     		$vendaBD->funcionarios_id = $this->Auth->user('id');
     		$vendaBD->data = Time::now();
     		
-    		//link todos os produtos (join) =>  populariza a 3 tabela N:N e retira do estoque os produtos vendidos
+    		//linka todos os produtos (join) =>  populariza a 3 tabela N:N e retira do estoque os produtos vendidos
     		$vendaBD->produtos = [];
     		$produtosTable = TableRegistry::get('Produtos');
     		foreach ($parametros['produtos'] as $produto)
