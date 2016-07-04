@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\Database\Type;
 use PhpParser\Node\Expr\Cast\Object_;
 use Cake\I18n\Time;
+use Cake\ORM\TableRegistry;
 
 /**
  * Vendas Controller
@@ -190,6 +191,20 @@ class VendasController extends AppController
     		$vendaBD->cliente_id = $parametros['cliente']->id;
     		$vendaBD->funcionarios_id = $this->Auth->user('id');
     		$vendaBD->data = Time::now();
+    		
+    		//link todos os produtos (join) =>  populariza a 3 tabela N:N e retira do estoque os produtos vendidos
+    		$vendaBD->produtos = [];
+    		$produtosTable = TableRegistry::get('Produtos');
+    		foreach ($parametros['produtos'] as $produto)
+    		{
+    			$produtoEntity = $produtosTable->find()
+    							->where(['id'=>$produto->id])
+    							->first();
+    			$produtoEntity->em_estoque = 0;
+    			array_push(  $vendaBD->produtos, $produtoEntity);
+    		}
+    		
+    		//Tenta salvar todos os dados
     		if( $this->Vendas->save($vendaBD)){
     			$this->Flash->success("Venda efetuada com sucesso");
     		}
@@ -197,7 +212,6 @@ class VendasController extends AppController
     		{
     			$this->Flash->error("Ocorreu problemas ao salvar venda, por favor tente novamente");
     		}
-    		
     		
     		
     		return $this->redirect(['action'=>'realiza']);
