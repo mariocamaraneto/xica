@@ -15,12 +15,11 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('data') ?></th>
+                <th><?= $this->Paginator->sort('cliente_id') ?></th>
                 <th><?= $this->Paginator->sort('total') ?></th>
                 <th><?= $this->Paginator->sort('desconto') ?></th>
                 <th><?= $this->Paginator->sort('forma_pagamento') ?></th>
-                <th><?= $this->Paginator->sort('cliente_id') ?></th>
                 <th><?= $this->Paginator->sort('funcionarios_id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -28,13 +27,12 @@
         <tbody>
             <?php foreach ($vendas as $venda): ?>
             <tr>
-                <td><?= $this->Number->format($venda->id) ?></td>
                 <td><?= h($venda->data) ?></td>
-                <td><?= $this->Number->format($venda->total) ?></td>
-                <td><?= h($venda->desconto) ?></td>
+                <td><?= $venda->has('cliente') ? $this->Html->link($venda->cliente->nome, ['controller' => 'Clientes', 'action' => 'view', $venda->cliente->id]) : '' ?></td>
+                <td><?= $this->Number->currency($venda->total) ?></td>
+                <td><?= $this->Number->currency($venda->desconto) ?></td>
                 <td><?= h($venda->forma_pagamento) ?></td>
-                <td><?= $venda->has('cliente') ? $this->Html->link($venda->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $venda->cliente->id]) : '' ?></td>
-                <td><?= $venda->has('funcionario') ? $this->Html->link($venda->funcionario->id, ['controller' => 'Funcionarios', 'action' => 'view', $venda->funcionario->id]) : '' ?></td>
+                <td><?= $venda->has('funcionario') ? $this->Html->link($venda->funcionario->nome_login, ['controller' => 'Funcionarios', 'action' => 'view', $venda->funcionario->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $venda->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $venda->id]) ?>

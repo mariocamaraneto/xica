@@ -1,6 +1,11 @@
-
+<nav class="large-2 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Listar Vendas'), ['action' => 'index']) ?></li>
+    </ul>
+</nav>
 <div
-	class="vendas index large-9 large-offset-2 medium-8 columns content">
+	class="vendas index large-9 medium-8 columns content">
 	<h3><?= __('Realizando Venda') ?></h3>
 
 

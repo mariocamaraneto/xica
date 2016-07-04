@@ -111,7 +111,7 @@ function concluiVenda() {
 	dadosAJAX.desconto = descontoVenda;
 	dadosAJAX.formaPagamento = formaPagamento;
 	
-	$.redirect("http://localhost/xica/vendas/conclui.json",dadosAJAX);
+	$.redirect("http://localhost/xica/vendas/conclui",dadosAJAX);
 
 }
 

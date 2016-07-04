@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Database\Type;
 use PhpParser\Node\Expr\Cast\Object_;
+use Cake\I18n\Time;
 
 /**
  * Vendas Controller
@@ -21,7 +22,8 @@ class VendasController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Clientes', 'Funcionarios']
+            'contain' => ['Clientes', 'Funcionarios'],
+        	'order' => ['data'=>'DESC'],
         ];
         $vendas = $this->paginate($this->Vendas);
 
@@ -172,15 +174,33 @@ class VendasController extends AppController
     		//recupera os valor enviados por 'post'
     		$parametros = [];
     		$parametros['cliente'] = json_decode($this->request->data['cliente']);
-    		$parametros['desconto'] = $this->request->data['desconto'];
+    		$parametros['desconto'] = (float)  $this->request->data['desconto'];
     		$parametros['formaPagamento'] = $this->request->data['formaPagamento'];
     		
     		//recupera produtos da sessão
     		$sessao = $this->request->session();
     		$parametros['produtos'] = $sessao->read('venda')['produtos'];
-    		$parametros['total'] = $sessao->read('venda')['total'];
+    		$parametros['total'] = (float) $sessao->read('venda')['total'];
+    		
+    		//salva no bando de dados as informações de venda
+    		$vendaBD = $this->Vendas->newEntity();
+    		$vendaBD->total =  $parametros['total'];
+    		$vendaBD->desconto = $parametros['desconto'];
+    		$vendaBD->forma_pagamento = $parametros['formaPagamento'];
+    		$vendaBD->cliente_id = $parametros['cliente']->id;
+    		$vendaBD->funcionarios_id = $this->Auth->user('id');
+    		$vendaBD->data = Time::now();
+    		if( $this->Vendas->save($vendaBD)){
+    			$this->Flash->success("Venda efetuada com sucesso");
+    		}
+    		else 
+    		{
+    			$this->Flash->error("Ocorreu problemas ao salvar venda, por favor tente novamente");
+    		}
     		
     		
+    		
+    		return $this->redirect(['action'=>'realiza']);
     		//envia parametros para view
     		$this->set($parametros);
     		$this->set('_serialize', ['cliente','desconto','formaPagamento', 'produtos', 'total']);

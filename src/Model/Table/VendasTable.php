@@ -87,4 +87,5 @@ class VendasTable extends Table
         $rules->add($rules->existsIn(['funcionarios_id'], 'Funcionarios'));
         return $rules;
     }
+    
 }
