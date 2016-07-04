@@ -36,8 +36,8 @@
             <tr>
                 <th><?= $this->Paginator->sort('referencia') ?></th>
                 <th><?= $this->Paginator->sort('nome') ?></th>
-                <th><?= $this->Paginator->sort('quantidade') ?></th>
                 <th><?= $this->Paginator->sort('preco') ?></th>
+                <th><?= $this->Paginator->sort('em_estoque') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -46,8 +46,8 @@
             <tr>
             	<td><?= h($produto->referencia) ?></td>
                 <td><?= h($produto->nome) ?></td>
-                <td><?= $this->Number->format($produto->quantidade) ?></td>
                 <td><?= $this->Number->currency($produto->preco) ?></td>
+                <td><?= $produto->em_estoque ? "Sim" : "Não" ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $produto->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id]) ?>

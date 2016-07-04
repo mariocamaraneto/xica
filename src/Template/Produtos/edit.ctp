@@ -23,7 +23,8 @@
             echo $this->Form->input('preco');
             echo $this->Form->input('descricao');
             echo $this->Form->input('fornecedor_id', ['options' => $fornecedores]);
-            echo $this->Form->input('quantidade');
+            echo "Em estoque: ";
+            echo $this->Form->radio('em_estoque', [1=>'Sim', 0=>'Não'], ['value'=>$produto->em_estoque]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

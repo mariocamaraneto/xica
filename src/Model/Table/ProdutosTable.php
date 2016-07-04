@@ -81,9 +81,8 @@ class ProdutosTable extends Table
             ->allowEmpty('descricao');
 
         $validator
-            ->integer('quantidade')
-            ->requirePresence('quantidade', 'create')
-            ->notEmpty('quantidade');
+            ->integer('em_estoque')
+            ->allowEmpty('em_estoque', 1);
 
         return $validator;
     }
@@ -103,7 +102,7 @@ class ProdutosTable extends Table
     
     public function findGeralPonderado(Query $query, array $options){
     	$query = $this->find();
-    	$query->select(['id', 'nome', 'quantidade', 'preco', 'referencia']);
+    	$query->select(['id', 'nome', 'em_estoque', 'preco', 'referencia']);
     	
     	
     	//cada tipo de campo possui um peso, sendo assim, é feito um calculo 

@@ -43,8 +43,8 @@
             <td><?= $this->Number->format($produto->preco) ?></td>
         </tr>
         <tr>
-            <th><?= __('Quantidade') ?></th>
-            <td><?= $this->Number->format($produto->quantidade) ?></td>
+            <th><?= __('Em estoque') ?></th>
+            <td><?= $produto->em_estoque ? "Sim" : "Não" ?></td>
         </tr>
     </table>
     <div class="related">

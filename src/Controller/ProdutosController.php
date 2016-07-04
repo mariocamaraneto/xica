@@ -51,6 +51,7 @@ class ProdutosController extends AppController
     		
     	}else 
     	{
+    		$this->paginate = ['order'=>['em_estoque'=>'DESC']];
 	        $produtos = $this->paginate($this->Produtos);
     	}
     	
