@@ -225,16 +225,24 @@ class VendasController extends AppController
     }
     
     /**
-     * Função responsável por realizar a pesquisa de produtos 
+     * Função responsável por realizar a pesquisa de produtos para mostrar ja janela Modal
+     * para o usuário escolher quais produtos.
+     * Retorno em json ou xml para requisição ajax. 
+     * NÃO POSSUI VIEW CONSTRUIDA
      */
     public function searchProdutos(){
-    	if( $this->request->query('search') )
+    	if( $this->request->query('search') && $this->request->is('json'))
     	{
     		$produtosTable = TableRegistry::get('Produtos');
     		$produtos = $produtosTable->find("GeralPonderado", ['pesquisa' =>$this->request->query('search')] );
     		$produtos->where(['em_estoque'=>1]);
     		$this->set(compact('produtos'));
     		$this->set('_serialize', ['produtos']);
+    	}
+    	else 
+    	{
+    		$this->Flash->error("requisição não permitida");
+    		$this->redirect(['action'=>'realiza']);
     	}
     	
     }
