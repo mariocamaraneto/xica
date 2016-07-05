@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\I18n\Time;
 
 /**
  * Produtos Model
@@ -148,4 +149,31 @@ class ProdutosTable extends Table
 
     	return $query;
     }
+    
+    /**
+     * Pesquisa por produtos que devem ser pagos para um fornecedor em um escala de tempo
+     * Recebe uma query de pesquisa e $options['id','tempo']
+     * id-> fornecedor
+     * tempo -> vendas anteriores apartir de quando '30 days ago'
+     * @param Query $query
+     * @param array $options
+     * @return \Cake\ORM\Query
+     */
+    public function findProdutosAPagar(Query $query, array $options)
+    {
+    	//busca todos os produtos que são deste fornecedor
+    	$query->where(['Produtos.fornecedor_id'=> $options['idFornecedor']]);
+    	
+    	//faz inner join com a tabela de vendas com as vendas com datas anteriores a 'tempo'
+    	$query->matching('Vendas',function ($q) use ($options){
+    		return $q->where(  ['Vendas.data <' => new Time( $options['tempo'] )]  );
+    	});
+    	
+    	//filtra para aquelas que não foram pagas ainda
+    	$query->where(['VendasProdutos.pagamento_id IS'=>null]);
+    	
+    	return $query;
+    }
+    
+    
 }

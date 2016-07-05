@@ -87,6 +87,7 @@ function selecionaOpcao() {
 
 
 function buscaProdutosAPagar(){
+	$('#listaDeProdutos').html('');
 	$.ajax({
 		url : "/pagamentos/searchProdutosAPagar.json?search=" + fornecedorSelecionado.id,
 		dataType: 'json',
@@ -102,7 +103,10 @@ function buscaProdutosAPagar(){
 	});
 }
 
-
+function finalizaPagamento()
+{
+	
+}
 
 // converte uma entrada no padrão monetário para número
 function dinheiroParaNumero(valor) {

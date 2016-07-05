@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
-use Cake\I18n\Time;
 
 /**
  * Pagamentos Controller
@@ -130,6 +129,8 @@ class PagamentosController extends AppController
     						['Fornecedores.nome LIKE' => '%'.  $this->request->query('search') .'%'],
     				]
     				);
+    		$fornecedores->select(['id','nome','telefone']);
+    		
     		$this->set(compact('fornecedores'));
     		$this->set('_serialize', ['fornecedores']);
     	}
@@ -147,23 +148,16 @@ class PagamentosController extends AppController
      	{
     		$produtosTable = TableRegistry::get("Produtos");
     		
-    		//faz o select das informações que serão enviadas
-    		$produtos = $produtosTable->find("all");
-    		$produtos->select(['id', 'nome', 'custo_bruto', 'referencia']);
+    		$options = [];
+    		$options['idFornecedor'] = $this->request->query('search');
+    		$options['tempo'] = '30 days ago';
     		
-    		//busca todos os produtos que são deste fornecedor
-    		$produtos->where(['Produtos.fornecedor_id'=> $this->request->query('search')]);
-    		
-    		//faz inner join com a tabela de vendas com as vendas com datas maior de 30 dias
-    		$produtos->matching('Vendas',function ($q){
-    			return $q->where(  ['Vendas.data >' => new Time('30 days ago')]  );
-    		});
-    		
-    		//filtra para aquelas que não foram pagas ainda
-    		$produtos->where(['VendasProdutos.pagamento_id IS'=>null]);
+    		$produtos = $produtosTable->find('ProdutosAPagar', $options);
+    		//faz filtro para diminuir overload do json
+      		$produtos->select(['referencia', 'nome', 'custo_bruto']);
     		
     		$this->set(compact('produtos'));
-    		//$this->set('produtosD',debug($produtos));
+//      		$this->set('produtosD',debug($produtos));
     		$this->set('_serialize', ['produtos','produtosD']);
     		
     	}
