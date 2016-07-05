@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
 
 /**
  * Pagamentos Controller
@@ -112,4 +114,65 @@ class PagamentosController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    
+    public function realiza()
+    {
+    	
+    }
+    
+    public function searchFornecedores()
+    {
+    	if( $this->request->query('search') )
+    	{
+     		$fornecedoresTable = TableRegistry::get('Fornecedores');
+    		$fornecedores = $fornecedoresTable->find('all', 
+    				['conditions' => 
+    						['Fornecedores.nome LIKE' => '%'.  $this->request->query('search') .'%'],
+    				]
+    				);
+    		$this->set(compact('fornecedores'));
+    		$this->set('_serialize', ['fornecedores']);
+    	}
+    	else
+    	{
+    		$this->Flash->error("Requisição não permitida");
+    		$this->redirect(['action'=>'realiza']);
+    	}
+    	
+    }
+    
+    public function searchProdutosAPagar()
+    {
+     	if( $this->request->query('search') && $this->request->is('json'))
+     	{
+    		$produtosTable = TableRegistry::get("Produtos");
+    		
+    		//faz o select das informações que serão enviadas
+    		$produtos = $produtosTable->find("all");
+    		$produtos->select(['id', 'nome', 'custo_bruto', 'referencia']);
+    		
+    		//busca todos os produtos que são deste fornecedor
+    		$produtos->where(['Produtos.fornecedor_id'=> $this->request->query('search')]);
+    		
+    		//faz inner join com a tabela de vendas com as vendas com datas maior de 30 dias
+    		$produtos->matching('Vendas',function ($q){
+    			return $q->where(  ['Vendas.data >' => new Time('30 days ago')]  );
+    		});
+    		
+    		//filtra para aquelas que não foram pagas ainda
+    		$produtos->where(['VendasProdutos.pagamento_id IS'=>null]);
+    		
+    		$this->set(compact('produtos'));
+    		//$this->set('produtosD',debug($produtos));
+    		$this->set('_serialize', ['produtos','produtosD']);
+    		
+    	}
+    	else
+    	{
+    		$this->Flash->error("Requisição não permitida");
+    		$this->redirect(['action' => 'realiza']);
+    	}
+    }
+    
+    
 }
