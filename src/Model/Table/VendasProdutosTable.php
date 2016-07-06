@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\I18n\Time;
 
 /**
  * VendasProdutos Model
@@ -42,6 +43,7 @@ class VendasProdutosTable extends Table
         $this->belongsTo('Pagamentos', [
             'foreignKey' => 'pagamento_id'
         ]);
+        
     }
 
     /**
@@ -74,4 +76,24 @@ class VendasProdutosTable extends Table
         $rules->add($rules->existsIn(['pagamento_id'], 'Pagamentos'));
         return $rules;
     }
+    
+    public function findProdutosAPagar(Query $query, array $options)
+    {
+
+    	//busca todos os produtos que são deste fornecedor  
+    	$query->where(['VendasProdutos.pagamento_id IS'=> null]);
+    	 
+    	//faz inner join com a tabela de vendas com as vendas com datas anteriores a 'tempo'new Time( $options['tempo'] )] 
+    	$query->matching('Produtos',function ($q) use ($options){
+    		return $q->where(  ['Produtos.fornecedor_id' =>  $options['idFornecedor'] ]);
+    	});
+    	
+    	$query->matching('Vendas', function($q) use ($options){
+    		return $q->where( ['Vendas.data <' => new Time($options['tempo'])] );
+    	});
+    		 
+    	
+    	return $query;
+    }
+    
 }

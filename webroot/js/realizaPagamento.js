@@ -92,7 +92,7 @@ function buscaProdutosAPagar(){
 		url : "/pagamentos/searchProdutosAPagar.json?search=" + fornecedorSelecionado.id,
 		dataType: 'json',
 		success: function (data){
-			var total=0;
+			total=0;
 			for( var i=0; i<data.produtos.length; i++){
 				insereProdutoTabela(data.produtos[i]);
 				total += data.produtos[i].custo_bruto;
@@ -103,9 +103,9 @@ function buscaProdutosAPagar(){
 	});
 }
 
-function finalizaPagamento()
+function realizarPagamento()
 {
-	
+	$.redirect('/pagamentos/finaliza', fornecedorSelecionado);
 }
 
 // converte uma entrada no padrão monetário para número

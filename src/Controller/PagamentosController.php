@@ -160,7 +160,6 @@ class PagamentosController extends AppController
       		$produtos->select(['referencia', 'nome', 'custo_bruto']);
     		
     		$this->set(compact('produtos'));
-//      		$this->set('produtosD',debug($produtos));
     		$this->set('_serialize', ['produtos','produtosD']);
     		
     	}
@@ -176,11 +175,21 @@ class PagamentosController extends AppController
     {
     	if($this->request->is('post')){
     		
+    		$options = [];
+    		$options['idFornecedor'] = $this->request->data['id'];
+    		$options['tempo'] = '30 days ago';
+    		$produtosTable = TableRegistry::get("Produtos");
+    		$produtos = $produtosTable->find('ProdutosAPagar', $options);
+    		//faz filtro para diminuir overload do json
+     		$total = $produtos->select(['soma'=>'sum( Produtos.custo_bruto )'])->first()->soma;
+    		
     		//armazena sessão para concluir a venda
     		$sessao = $this->request->session();
     		$sessao->write('fornecedor', $this->request->data);
+    		$sessao->write('total', $total);
     		
     		$this->set('fornecedor', $this->request->data);
+    		$this->set('total', $total);
     		$this->set('_serialize', 'fornecedor');
     	}else 
     	{
@@ -202,7 +211,7 @@ class PagamentosController extends AppController
      		$fornecedorID = $pagamentosTable->Fornecedores->get((int) $fornecedorSession['id'])['id'];
     		$pagamento = $this->Pagamentos->newEntity([
     					'data' => Time::now(),
-    					'valor' => $fornecedorSession['total'],
+    					'valor' => $this->request->session()->read('total'),
     					'forma_pagamento' => $pagamentoRequest['formaPagamento'] ,
     					'observacoes' => $pagamentoRequest['observacaoPagamento'],
     					'fornecedores_id' =>  $fornecedorID,

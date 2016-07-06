@@ -15,26 +15,22 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('data') ?></th>
+                <th><?= $this->Paginator->sort('fornecedores_nome') ?></th>
                 <th><?= $this->Paginator->sort('valor') ?></th>
                 <th><?= $this->Paginator->sort('forma_pagamento') ?></th>
-                <th><?= $this->Paginator->sort('observacoes') ?></th>
-                <th><?= $this->Paginator->sort('fornecedores_id') ?></th>
-                <th><?= $this->Paginator->sort('funcionarios_id') ?></th>
+                <th><?= $this->Paginator->sort('funcionarios_nome_login') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($pagamentos as $pagamento): ?>
             <tr>
-                <td><?= $this->Number->format($pagamento->id) ?></td>
                 <td><?= h($pagamento->data) ?></td>
+                <td><?= $pagamento->has('fornecedor') ? $this->Html->link($pagamento->fornecedor->nome, ['controller' => 'Fornecedores', 'action' => 'view', $pagamento->fornecedor->id]) : '' ?></td>
                 <td><?= h($pagamento->valor) ?></td>
                 <td><?= h($pagamento->forma_pagamento) ?></td>
-                <td><?= h($pagamento->observacoes) ?></td>
-                <td><?= $pagamento->has('fornecedor') ? $this->Html->link($pagamento->fornecedor->id, ['controller' => 'Fornecedores', 'action' => 'view', $pagamento->fornecedor->id]) : '' ?></td>
-                <td><?= $pagamento->has('funcionario') ? $this->Html->link($pagamento->funcionario->id, ['controller' => 'Funcionarios', 'action' => 'view', $pagamento->funcionario->id]) : '' ?></td>
+                <td><?= $pagamento->has('funcionario') ? $this->Html->link($pagamento->funcionario->nome_login, ['controller' => 'Funcionarios', 'action' => 'view', $pagamento->funcionario->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $pagamento->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pagamento->id]) ?>

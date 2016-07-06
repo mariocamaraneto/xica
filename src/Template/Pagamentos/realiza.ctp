@@ -59,7 +59,7 @@
 
 	<div class='row'>
 		<div class='large-3 large-offset-1 columns'>
-	   		<button class='button small round success' type="button" onclick="finalizaPagamento();">Finalizar Pagamento</button> 
+	   		<button class='button small round success' type="button" onclick="realizarPagamento();">Realizar Pagamento</button> 
 		</div>
 		<div class='large-4 large-offset-4 columns'>
 			<ul class="pricing-table">
