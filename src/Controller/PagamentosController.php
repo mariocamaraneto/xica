@@ -3,6 +3,9 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
+use App\Model\Entity\VendasProduto;
+
 
 /**
  * Pagamentos Controller
@@ -169,4 +172,63 @@ class PagamentosController extends AppController
     }
     
     
+    public function finaliza()
+    {
+    	if($this->request->is('post')){
+    		
+    		//armazena sessão para concluir a venda
+    		$sessao = $this->request->session();
+    		$sessao->write('fornecedor', $this->request->data);
+    		
+    		$this->set('fornecedor', $this->request->data);
+    		$this->set('_serialize', 'fornecedor');
+    	}else 
+    	{
+    		$this->Flash->error("Você deve escolher o fornecedor primeiro");
+    		$this->redirect(['action' => 'realiza']);
+    	}
+    }
+    
+    public function conclui()
+    {
+    	if ( $this->request->is('post') )
+    	{
+    		$fornecedorSession = $this->request->session()->read('fornecedor');
+    		$pagamentoRequest = $this->request->data;
+    		
+    		
+    		$pagamentosTable = TableRegistry::get('Pagamentos');
+     		$funcionarioID= $pagamentosTable->Funcionarios->get($this->Auth->user('id')) ['id'];
+     		$fornecedorID = $pagamentosTable->Fornecedores->get((int) $fornecedorSession['id'])['id'];
+    		$pagamento = $this->Pagamentos->newEntity([
+    					'data' => Time::now(),
+    					'valor' => $fornecedorSession['total'],
+    					'forma_pagamento' => $pagamentoRequest['formaPagamento'] ,
+    					'observacoes' => $pagamentoRequest['observacaoPagamento'],
+    					'fornecedores_id' =>  $fornecedorID,
+    					'funcionarios_id' => $funcionarioID,
+    				]
+    				);
+    		
+    		
+    		$vendasProdutosTable = TableRegistry::get('VendasProdutos');
+    		$vendasProdutos = $vendasProdutosTable->find('ProdutosAPagar', [
+    			    									'idFornecedor' =>  $fornecedorSession['id'],
+    			    									'tempo' => '30 days ago'
+    					]);
+    		
+    		if( $pagamentosTable->save($pagamento)){
+    			foreach ($vendasProdutos as $vendaProduto){
+    				$vendaProduto->pagamento_id = $pagamento->id;
+    				$vendasProdutosTable->save($vendaProduto);
+    			}
+     		}
+    			
+     		$this->Flash->success("Pagamento realizado com sucesso");
+     		$this->redirect(['action' => 'view', $pagamento->id]);
+     		
+    		$this->set('pagamento', $pagamento );
+    		$this->set('_serialize', ['pagamento']);
+    	}
+    }
 }
