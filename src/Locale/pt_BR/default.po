@@ -371,13 +371,20 @@ msgstr "Editar Informações"
 msgid "New Cliente"
 msgstr "Cadastrar Cliente"
 
+msgid "List Funcionarios"
+msgstr "Mostrar Todos Funcionários"
+
+msgid "List Clientes"
+msgstr "Mostrar Todos Clientes"
+
+msgid "List Vendas"
+msgstr "Mostrar Todas Vendas"
+
 msgid ""
 msgstr ""
 
-
-
-
-
+msgid ""
+msgstr ""
 
 
 

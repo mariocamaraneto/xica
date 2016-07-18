@@ -1,16 +1,16 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Funcionario'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="funcionarios index large-9 medium-8 columns content">
-    <h3><?= __('Funcionarios') ?></h3>
+    <h3>Funcionários</h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th><?= $this->Paginator->sort('nome_completo') ?></th>
-                <th><?= $this->Paginator->sort('nome_login') ?></th>
+                <th><?= $this->Paginator->sort('nome_login', 'Login')?></th>
                 <th><?= $this->Paginator->sort('telefone') ?></th>
                 <th><?= $this->Paginator->sort('admin') ?></th>
                 <th><?= $this->Paginator->sort('ativo') ?></th>
