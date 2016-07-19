@@ -59,14 +59,6 @@ $sysDescription = 'Sistema Brechó da Xica';
         						); ?>
         		</li>
         		<li>
-        			<?php  echo $this->Html->link('Vendas', [
-							        				'controller' => 'Vendas',
-							        				'action' => 'realiza',
-							        				'_full' => true,
-        											]
-        						); ?>
-        		</li>
-        		<li>
         			<?php  echo $this->Html->link('Produtos', [
 							        				'controller' => 'Produtos',
 							        				'action' => 'index',
@@ -78,6 +70,14 @@ $sysDescription = 'Sistema Brechó da Xica';
         			<?php  echo $this->Html->link('Fornecedores', [
 							        				'controller' => 'Fornecedores',
 							        				'action' => 'index',
+							        				'_full' => true,
+        											]
+        						); ?>
+        		</li>
+        		<li>
+        			<?php  echo $this->Html->link('Vendas', [
+							        				'controller' => 'Vendas',
+							        				'action' => 'realiza',
 							        				'_full' => true,
         											]
         						); ?>

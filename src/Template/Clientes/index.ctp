@@ -46,6 +46,7 @@
                 <td><?= h($cliente->email) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $cliente->id]) ?>
+                    /
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $cliente->id]) ?>
                 </td>
             </tr>

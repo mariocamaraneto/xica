@@ -12,19 +12,57 @@
     <?= $this->Form->create($produto) ?>
     <fieldset>
         <legend><?= __('Add Produto') ?></legend>
-        <?php
-            echo $this->Form->input('nome');
-            echo $this->Form->input('marca');
-            echo $this->Form->input('material');
-            echo $this->Form->input('cor');
-            echo $this->Form->input('referencia');
-            echo $this->Form->input('custo_bruto');
-            echo $this->Form->input('preco');
-            echo $this->Form->input('descricao');
-            echo $this->Form->input('fornecedor_id', ['options' => $fornecedores]);
-            echo "Em estoque: ";
-            echo $this->Form->radio('em_estoque',[1=>"Sim", 0=>'Não'],['value'=>1]);
-        ?>
+        
+        <div class="row">
+        	<div class="large-6 columns">    
+        		<?php echo $this->Form->input('nome'); ?>
+        	</div>
+        	<div class="large-6 columns">    
+        		<?php echo $this->Form->input('marca'); ?>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="large-6 columns">    
+        		<?php echo $this->Form->input('material'); ?>
+        	</div>
+        	<div class="large-6 columns">    
+        		<?php echo $this->Form->input('cor'); ?>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="large-6 columns">    
+        		<?php echo $this->Form->input('referencia'); ?>
+        	</div>
+        	<div class="large-6 columns">    
+        		<?php echo $this->Form->input('custo_bruto'); ?>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="large-6 columns">    
+        		<?php echo $this->Form->input('preco'); ?>
+        	</div>
+        	<div class="large-6 columns">    
+        		<?php echo $this->Form->input('descricao'); ?>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="large-6 columns">   
+        	<?php 
+        			$optFornecedores = [];
+        			foreach ($fornecedores as $fornecedor)
+        			{
+        				$optFornecedores[$fornecedor->id] = $fornecedor->nome;
+        			}
+        			echo $this->Form->select('fornecedor_id', $optFornecedores);
+        		?> 
+        		<!--<?php echo $this->Form->input('fornecedor_id', ['options' => $fornecedores]); ?> -->
+        	</div>
+        	<div class="large-6 columns">    
+        		<label>Em estoque</label>
+        		<?php echo $this->Form->radio('em_estoque',[1=>"Sim", 0=>'Não'],['value'=>1]); ?>
+        	</div>
+        </div>
+
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

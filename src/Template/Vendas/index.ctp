@@ -1,13 +1,10 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Venda'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Venda'), ['action' => 'realiza']) ?></li>
         <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Funcionarios'), ['controller' => 'Funcionarios', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Funcionario'), ['controller' => 'Funcionarios', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="vendas index large-9 medium-8 columns content">
@@ -20,7 +17,7 @@
                 <th><?= $this->Paginator->sort('total') ?></th>
                 <th><?= $this->Paginator->sort('desconto') ?></th>
                 <th><?= $this->Paginator->sort('forma_pagamento') ?></th>
-                <th><?= $this->Paginator->sort('funcionarios_id') ?></th>
+                <th><?= $this->Paginator->sort('funcionarios_id', 'Funcionário') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>

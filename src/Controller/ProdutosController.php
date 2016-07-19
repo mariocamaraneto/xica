@@ -92,10 +92,10 @@ class ProdutosController extends AppController
                 $this->Flash->success(__('O produto foi cadastrado com sucesso.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('O cliente não foi salvo. Confira os dados e tente novamente.'));
+                $this->Flash->error(__('O Produto não foi salvo. Confira os dados e tente novamente.'));
             }
         }
-        $fornecedores = $this->Produtos->Fornecedores->find('list', ['limit' => 200]);
+        $fornecedores = $this->Produtos->Fornecedores->find('all', ['limit' => 200])->select(['id','nome']);
         $vendas = $this->Produtos->Vendas->find('list', ['limit' => 200]);
         $this->set(compact('produto', 'fornecedores', 'vendas'));
         $this->set('_serialize', ['produto']);

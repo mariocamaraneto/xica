@@ -1,7 +1,7 @@
 <nav class="large-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Listar Vendas'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Vendas'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div
@@ -58,7 +58,10 @@
 
 
 	<div class='row'>
-		<div class='large-4 large-offset-8 columns'>
+		<div class='large-2 columns'>
+			<button type="button" class="round success button" onclick="finalizaVenda();">Finalizar Venda</button>
+		</div> 
+		<div class='large-4 large-offset-4 columns'>
 			<ul class="pricing-table">
 				<li class="title">Total da Venda</li>
 				<li class="price" id="valorTotal">R$ 0,00</li>
@@ -66,7 +69,6 @@
 		</div>
 	</div>
 
-	 <button type="button" onclick="finalizaVenda();">Click Me!</button> 
 
 </div>
 

@@ -1,4 +1,4 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Fornecedor'), ['action' => 'add']) ?></li>
@@ -10,9 +10,9 @@
     
    	<div class='row'>
 		<div class='medium-5 large-6 columns'>
-	   	 <h3 style="display:inline; margin-right:6em;"><?= __('Fornecedoras') ?></h3>
+	   		<h3 style="display:inline; margin-right:6em;"><?= __('Fornecedoras') ?></h3>
 		</div>
-		<div class='small-5 medium-4 large-4 columns'>
+		<div class='medium-8 large-4 columns'>
 		    <!-- Pesquisa por nome do fornecedor -->
 		    <?php 
 		    	echo $this->Form->create(null, ['type'=>'get']);
@@ -22,9 +22,9 @@
 		    	]);
 		    ?>
 	    </div>
-	    <div class=' medium-4 large-2 columns botao-pesquisar'>
+	    <div class='medium-6 large-2 columns'>
 		    <?php 
-		    	echo $this->Form->button('Pesquisar');
+		    	echo $this->Form->button('Pesquisar', ['class'=>'round tiny button']);
 		    	echo $this->Form->end();
 		    ?>
 	    </div>

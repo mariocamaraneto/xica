@@ -363,13 +363,13 @@ msgid "No"
 msgstr "Não"
 
 msgid "New Funcionario"
-msgstr "Cadastrar Funcionário"
+msgstr "Cadastro de Funcionário"
 
 msgid "Edit Funcionario"
 msgstr "Editar Informações"
 
 msgid "New Cliente"
-msgstr "Cadastrar Cliente"
+msgstr "Cadastro de Clientes"
 
 msgid "List Funcionarios"
 msgstr "Mostrar Todos Funcionários"
@@ -380,11 +380,34 @@ msgstr "Mostrar Todos Clientes"
 msgid "List Vendas"
 msgstr "Mostrar Todas Vendas"
 
+msgid "New Venda"
+msgstr "Realizar Venda"
+
+msgid "List Produtos"
+msgstr "Mostrar Todos Produtos"
+
+msgid "New Produto"
+msgstr "Cadastro de Produtos"
+
+msgid "New Fornecedor"
+msgstr "Cadastro de Fornecedor"
+
+msgid "List Fornecedores"
+msgstr "Mostrar Todos Fornecedores"
+
 msgid ""
 msgstr ""
 
 msgid ""
 msgstr ""
+
+msgid ""
+msgstr ""
+
+
+
+
+
 
 
 
