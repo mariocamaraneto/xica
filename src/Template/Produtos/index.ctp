@@ -48,6 +48,7 @@
                 <td><?= $produto->em_estoque ? "Sim" : "Não" ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $produto->id]) ?>
+                    /
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id]) ?>
                 </td>
             </tr>

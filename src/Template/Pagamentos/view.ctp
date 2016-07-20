@@ -7,7 +7,7 @@
     </ul>
 </nav>
 <div class="pagamentos view large-9 medium-8 columns content">
-    <h3><?= h($pagamento->id) ?></h3>
+    <h3><?= h($pagamento->fornecedor->nome) ?></h3>
     <table class="vertical-table">
         <tr>
             <th><?= __('Data') ?></th>
@@ -22,20 +22,12 @@
             <td><?= h($pagamento->forma_pagamento) ?></td>
         </tr>
         <tr>
-            <th><?= __('Observacoes') ?></th>
+            <th><?= __('Observacões') ?></th>
             <td><?= h($pagamento->observacoes) ?></td>
         </tr>
         <tr>
-            <th><?= __('Fornecedor') ?></th>
-            <td><?= $pagamento->has('fornecedor') ? $this->Html->link($pagamento->fornecedor->id, ['controller' => 'Fornecedores', 'action' => 'view', $pagamento->fornecedor->id]) : '' ?></td>
-        </tr>
-        <tr>
             <th><?= __('Funcionario') ?></th>
-            <td><?= $pagamento->has('funcionario') ? $this->Html->link($pagamento->funcionario->id, ['controller' => 'Funcionarios', 'action' => 'view', $pagamento->funcionario->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($pagamento->id) ?></td>
+            <td><?= $pagamento->has('funcionario') ? $this->Html->link($pagamento->funcionario->nome, ['controller' => 'Funcionarios', 'action' => 'view', $pagamento->funcionario->id]) : '' ?></td>
         </tr>
     </table>
     <div class="related">

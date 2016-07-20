@@ -398,6 +398,18 @@ msgstr "Mostrar Todos Fornecedores"
 msgid "Edit Fornecedor"
 msgstr "Editar Fornecedor"
 
+msgid "Edit Produto"
+msgstr "Editar Produto"
+
+msgid "Edit Cliente"
+msgstr "Editar Cliente"
+
+msgid "Edit Pagamento"
+msgstr "Editar Pagamento"
+
+msgid "Edit Funcionario"
+msgstr "Editar Funcionário"
+
 msgid "Add Cliente"
 msgstr "Cadastrar Cliente"
 
@@ -409,6 +421,10 @@ msgstr "Cadastrar Fornecedor"
 
 msgid "Add Produto"
 msgstr "Cadastrar Produto"
+
+msgid "Delete Pagamento"
+msgstr "Excluir Este Pagamento"
+
 
 msgid ""
 msgstr ""

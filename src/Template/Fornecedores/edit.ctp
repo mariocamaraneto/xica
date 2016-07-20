@@ -16,16 +16,42 @@
     <?= $this->Form->create($fornecedor) ?>
     <fieldset>
         <legend><?= __('Edit Fornecedor') ?></legend>
-        <?php
-            echo $this->Form->input('nome');
-            echo $this->Form->input('CPF_CNPJ');
-            echo $this->Form->input('endereco');
-            echo $this->Form->input('telefone');
-            echo $this->Form->input('email');
-            echo $this->Form->input('metodo_pagamento');
-            echo $this->Form->input('conta_banco');
-            echo $this->Form->input('observacoes');
-        ?>
+
+<div class='row'>
+        	<div class='large-6 columns'>
+        		<?php echo $this->Form->input('nome'); ?>
+        	</div>
+        	<div class='large-6 columns'>
+        		<?php echo $this->Form->input('telefone'); ?>
+        	</div>
+        </div>
+        <div class='row'>
+        	<div class='large-6 columns'>
+        		<?php echo $this->Form->input('endereco', ['label'=>'Endereço']); ?>
+        	</div>
+        	<div class='large-6 columns'>
+        		<?php echo $this->Form->input('CPF_CNPJ', ['label'=>'CPF/CNPJ']); ?>
+        	</div>
+        </div>
+		<div class='row'>
+        	<div class='large-6 columns'>
+        		<?php echo $this->Form->input('email'); ?>
+        	</div>
+        	<div class='large-6 columns'>
+        		<?php echo $this->Form->input('metodo_pagamento', ['label'=>'Método de Pagamento Preferencial']); ?>
+        	</div>
+        </div>
+		<div class='row'>
+        	<div class='large-6 columns'>
+        		<?php echo $this->Form->input('conta_banco'); ?>
+        	</div>
+        </div>
+        <div class='row'>
+            <div class='large-8 columns'>
+        		<?php echo $this->Form->input('observacoes',['label'=>'Observações', 'rows'=>'4']); ?>
+        	</div>
+        </div>
+
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

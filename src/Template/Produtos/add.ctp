@@ -31,7 +31,7 @@
         </div>
         <div class="row">
         	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('referencia'); ?>
+        		<?php echo $this->Form->input('referencia', ['label'=>'Referência']); ?>
         	</div>
         	<div class="large-6 columns">    
         		<?php echo $this->Form->input('custo_bruto'); ?>
@@ -39,10 +39,10 @@
         </div>
         <div class="row">
         	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('preco'); ?>
+        		<?php echo $this->Form->input('preco', ['label'=>'Preço']); ?>
         	</div>
         	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('descricao'); ?>
+        		<?php echo $this->Form->input('descricao', ['label'=>'Descrição']); ?>
         	</div>
         </div>
         <div class="row">

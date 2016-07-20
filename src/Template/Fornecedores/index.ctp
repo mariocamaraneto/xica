@@ -51,6 +51,7 @@
                 <td><?= h($fornecedor->telefone) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $fornecedor->id]) ?>
+                    /
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $fornecedor->id]) ?>
                 </td>
             </tr>

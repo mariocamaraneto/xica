@@ -17,15 +17,15 @@
             <td><?= h($cliente->email) ?></td>
         </tr>
         <tr>
-            <th><?= __('Data Nasc') ?></th>
+            <th><?= __('Data Nascimento') ?></th>
             <td><?= h($cliente->data_nasc) ?></td>
         </tr>
         <tr>
-            <th><?= __('Endereco') ?></th>
+            <th><?= __('Endereço') ?></th>
             <td><?= h($cliente->endereco) ?></td>
         </tr>
         <tr>
-            <th><?= __('Numero') ?></th>
+            <th><?= __('Número') ?></th>
             <td><?= h($cliente->numero) ?></td>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
             <td><?= h($cliente->complemento) ?></td>
         </tr>
         <tr>
-            <th><?= __('Observacoes') ?></th>
+            <th><?= __('Observações') ?></th>
             <td><?= h($cliente->observacoes) ?></td>
         </tr>
     </table>
@@ -53,19 +53,17 @@
                 <th><?= __('Data') ?></th>
                 <th><?= __('Total') ?></th>
                 <th><?= __('Desconto') ?></th>
-                <th><?= __('Forma Pagamento') ?></th>
-                <th><?= __('Cliente Id') ?></th>
-                <th><?= __('Funcionarios Id') ?></th>
+                <th><?= __('Pagamento') ?></th>
+                <th><?= __('Funcionários') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($cliente->vendas as $vendas): ?>
             <tr>
-                <td><?= h($vendas->data) ?></td>
-                <td><?= h($vendas->total) ?></td>
-                <td><?= h($vendas->desconto) ?></td>
-                <td><?= h($vendas->forma_pagamento) ?></td>
-                <td><?= h($vendas->cliente_id) ?></td>
-                <td><?= h($vendas->funcionarios_id) ?></td>
+                <td><?= $this->Time->format( $vendas->data, 'dd/MM/yyyy') ?></td>
+                <td><?= $this->Number->currency($vendas->total) ?></td>
+                <td><?= $this->Number->currency($vendas->desconto) ?></td>
+                <td><?= $vendas->forma_pagamento ?></td>
+                <td><?= $vendas->funcionarios_id ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Vendas', 'action' => 'view', $vendas->id]) ?>
                 </td>

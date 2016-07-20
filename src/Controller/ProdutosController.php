@@ -95,7 +95,7 @@ class ProdutosController extends AppController
                 $this->Flash->error(__('O Produto não foi salvo. Confira os dados e tente novamente.'));
             }
         }
-        $fornecedores = $this->Produtos->Fornecedores->find('all', ['limit' => 200])->select(['id','nome']);
+        $fornecedores = $this->Produtos->Fornecedores->find('all')->select(['id','nome']);
         $vendas = $this->Produtos->Vendas->find('list', ['limit' => 200]);
         $this->set(compact('produto', 'fornecedores', 'vendas'));
         $this->set('_serialize', ['produto']);
@@ -122,7 +122,7 @@ class ProdutosController extends AppController
                 $this->Flash->error(__('As alterações não foram salvas. Confira os dados e tente novamente.'));
             }
         }
-        $fornecedores = $this->Produtos->Fornecedores->find('list', ['limit' => 200]);
+        $fornecedores = $this->Produtos->Fornecedores->find('all')->select(['id','nome']);
         $vendas = $this->Produtos->Vendas->find('list', ['limit' => 200]);
         $this->set(compact('produto', 'fornecedores', 'vendas'));
         $this->set('_serialize', ['produto']);
