@@ -197,6 +197,20 @@ Inflector::rules('irregular', ['categoria' => 'categorias']);
 
 Plugin::load('Migrations');
 
+Plugin::load('CakePdf', ['bootstrap' => true]);
+Configure::write('CakePdf', [
+		'engine' => 'CakePdf.DomPdf',
+		'margin' => [
+				'bottom' => 15,
+				'left' => 50,
+				'right' => 30,
+				'top' => 45
+		],
+		'orientation' => 'landscape',
+		'download' => true
+]);
+
+
 // Only try to load DebugKit in development mode
 // Debug Kit should not be installed on a production system
 if (Configure::read('debug')) {

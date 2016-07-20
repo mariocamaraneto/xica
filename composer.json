@@ -10,7 +10,9 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
-        "cakephp/localized": "^3.0"
+        "cakephp/localized": "^3.0",
+        "friendsofcake/CakePdf": "^3.2",
+        "dompdf/dompdf": "^0.7.0"
     },
     "require-dev": {
         "psy/psysh": "@stable",
