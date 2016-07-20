@@ -413,6 +413,9 @@ msgstr "Editar Pagamento"
 msgid "Edit Funcionario"
 msgstr "Editar Funcionário"
 
+msgid "Edit Venda"
+msgstr "Editar Venda"
+
 msgid "Add Cliente"
 msgstr "Cadastrar Cliente"
 
@@ -428,9 +431,11 @@ msgstr "Cadastrar Produto"
 msgid "Delete Pagamento"
 msgstr "Excluir Este Pagamento"
 
+msgid "Delete Venda"
+msgstr "Excluir Esta Venda"
 
-msgid ""
-msgstr ""
+msgid "Related Produtos"
+msgstr "Produtos Vendidos"
 
 msgid ""
 msgstr ""

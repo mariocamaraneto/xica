@@ -7,9 +7,12 @@
     </ul>
 </nav>
 <div class="vendas view large-9 medium-8 columns content">
-    <h3><?= $venda->data ?></h3>
+    <h3>Visualização de Venda</h3>
     <table class="vertical-table">
         <tr>
+            <th><?= __('Data') ?></th>
+            <td><?= $venda->data) ?></td>
+        </tr>        <tr>
             <th><?= __('Desconto') ?></th>
             <td><?= $this->Number->currency($venda->desconto) ?></td>
         </tr>
@@ -22,7 +25,7 @@
             <td><?= $venda->has('cliente') ? $this->Html->link($venda->cliente->nome, ['controller' => 'Clientes', 'action' => 'view', $venda->cliente->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Funcionario') ?></th>
+            <th><?= __('Funcionário') ?></th>
             <td><?= $venda->has('funcionario') ? $this->Html->link($venda->funcionario->nome, ['controller' => 'Funcionarios', 'action' => 'view', $venda->funcionario->id]) : '' ?></td>
         </tr>
         <tr>
