@@ -11,7 +11,7 @@
     <table class="vertical-table">
         <tr>
             <th><?= __('Data') ?></th>
-            <td><?= $venda->data) ?></td>
+            <td><?= $venda->data ?></td>
         </tr>        <tr>
             <th><?= __('Desconto') ?></th>
             <td><?= $this->Number->currency($venda->desconto) ?></td>
