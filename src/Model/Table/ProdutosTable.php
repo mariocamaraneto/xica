@@ -166,7 +166,9 @@ class ProdutosTable extends Table
     	
     	//faz inner join com a tabela de vendas com as vendas com datas anteriores a 'tempo'
     	$query->matching('Vendas',function ($q) use ($options){
-    		return $q->where(  ['Vendas.data <' => new Time( $options['tempo'] )]  );
+    		return $q->where(  ['Vendas.data <' => new Time( $options['tempo'] ),
+    							'Vendas.cancelada' => '0']
+    						);
     	});
     	
     	//filtra para aquelas que não foram pagas ainda
