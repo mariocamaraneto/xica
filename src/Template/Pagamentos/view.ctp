@@ -18,7 +18,7 @@
             <td><?= h($pagamento->valor) ?></td>
         </tr>
         <tr>
-            <th><?= __('Forma Pagamento') ?></th>
+            <th><?= __('Forma de Pagamento') ?></th>
             <td><?= h($pagamento->forma_pagamento) ?></td>
         </tr>
         <tr>
@@ -26,7 +26,7 @@
             <td><?= h($pagamento->observacoes) ?></td>
         </tr>
         <tr>
-            <th><?= __('Funcionario') ?></th>
+            <th><?= __('Funcionário') ?></th>
             <td><?= $pagamento->has('funcionario') ? $this->Html->link($pagamento->funcionario->nome, ['controller' => 'Funcionarios', 'action' => 'view', $pagamento->funcionario->id]) : '' ?></td>
         </tr>
     </table>
@@ -35,22 +35,16 @@
         <?php if (!empty($pagamento->vendas_produtos)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th><?= __('Venda Id') ?></th>
                 <th><?= __('Produto Id') ?></th>
-                <th><?= __('Pagamento Id') ?></th>
-                <th><?= __('Quantidade') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($pagamento->vendas_produtos as $vendasProdutos): ?>
             <tr>
-                <td><?= h($vendasProdutos->venda_id) ?></td>
                 <td><?= h($vendasProdutos->produto_id) ?></td>
-                <td><?= h($vendasProdutos->pagamento_id) ?></td>
-                <td><?= h($vendasProdutos->quantidade) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'VendasProdutos', 'action' => 'view', $vendasProdutos->venda_id]) ?>
+                    /
                     <?= $this->Html->link(__('Edit'), ['controller' => 'VendasProdutos', 'action' => 'edit', $vendasProdutos->venda_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'VendasProdutos', 'action' => 'delete', $vendasProdutos->venda_id], ['confirm' => __('Are you sure you want to delete # {0}?', $vendasProdutos->venda_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

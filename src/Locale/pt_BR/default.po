@@ -386,6 +386,9 @@ msgstr "Realizar Venda"
 msgid "List Produtos"
 msgstr "Mostrar Todos Produtos"
 
+msgid "List Pagamento"
+msgstr "Mostrar Todos Pagamento"
+
 msgid "New Produto"
 msgstr "Cadastro de Produtos"
 

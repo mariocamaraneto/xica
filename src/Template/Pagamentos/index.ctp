@@ -21,9 +21,9 @@
         <tbody>
             <?php foreach ($pagamentos as $pagamento): ?>
             <tr>
-                <td><?= h($pagamento->data) ?></td>
+                <td><?= $this->Time->format($pagamento->data, "dd-MM-yyyy") ?></td>
                 <td><?= $pagamento->has('fornecedor') ? $this->Html->link($pagamento->fornecedor->nome, ['controller' => 'Fornecedores', 'action' => 'view', $pagamento->fornecedor->id]) : '' ?></td>
-                <td><?= h($pagamento->valor) ?></td>
+                <td><?= $this->Number->currency($pagamento->valor) ?></td>
                 <td><?= h($pagamento->forma_pagamento) ?></td>
                 <td><?= $pagamento->has('funcionario') ? $this->Html->link($pagamento->funcionario->nome_login, ['controller' => 'Funcionarios', 'action' => 'view', $pagamento->funcionario->id]) : '' ?></td>
                 <td class="actions">
