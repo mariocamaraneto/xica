@@ -70,6 +70,10 @@ class VendasTable extends Table
 
         $validator
             ->allowEmpty('forma_pagamento');
+        
+       	$validator
+            ->boolean('cancelada')
+            ->allowEmpty('admin');
 
         return $validator;
     }

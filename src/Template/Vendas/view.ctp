@@ -1,9 +1,9 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Venda'), ['action' => 'edit', $venda->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Venda'), ['action' => 'delete', $venda->id], ['confirm' => __('Are you sure you want to delete # {0}?', $venda->id)]) ?> </li>
+        <li><?= $venda->cancelada ? '' : $this->Form->postLink(__('Cancelar Venda'), ['action' => 'cancela', $venda->id], ['confirm' => __('Deseja cancelar esta vendas?')]) ?> </li>
         <li><?= $this->Html->link(__('List Vendas'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('Mostrar Vendas Canceladas'), ['action' => 'listcanceladas']) ?></li>
     </ul>
 </nav>
 <div class="vendas view large-9 medium-8 columns content">
@@ -32,10 +32,18 @@
             <th><?= __('Total') ?></th>
             <td><?= $this->Number->currency($venda->total) ?></td>
         </tr>
+        <tr>
+            <th><?= __('Estado') ?></th>
+            <td><?= $venda->cancelada ? 'Cancelada' : 'Realizada' ?></td>
+        </tr>
     </table>
     <div class="related">
         <h4><?= __('Related Produtos') ?></h4>
         <?php if (!empty($venda->produtos)): ?>
+        <small>
+        			<?= $venda->cancelada ? '*Todos os produtos já foram 
+					colocados em estoque automáticamente' : '' ?>
+		</small>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th><?= __('Nome') ?></th>

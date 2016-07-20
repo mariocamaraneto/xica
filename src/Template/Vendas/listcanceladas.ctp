@@ -2,11 +2,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Venda'), ['action' => 'realiza']) ?></li>
-        <li><?= $this->Html->link(__('Mostrar Vendas Canceladas'), ['action' => 'listcanceladas']) ?></li>
     </ul>
 </nav>
 <div class="vendas index large-9 medium-8 columns content">
-    <h3><?= __('Vendas') ?></h3>
+    <h3><?= __('Vendas Canceladas') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

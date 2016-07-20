@@ -23,11 +23,24 @@ class VendasController extends AppController
         $this->paginate = [
             'contain' => ['Clientes', 'Funcionarios'],
         	'order' => ['data'=>'DESC'],
+        	'conditions' => ['cancelada'=>'0'] ,
         ];
         $vendas = $this->paginate($this->Vendas);
 
         $this->set(compact('vendas'));
         $this->set('_serialize', ['vendas']);
+    }
+    
+    public function listcanceladas(){
+    	$this->paginate = [
+    			'contain' => ['Clientes', 'Funcionarios'],
+    			'order' => ['data'=>'DESC'],
+    			'conditions' => ['cancelada'=>'1'] ,
+    	];
+    	$vendas = $this->paginate($this->Vendas);
+    	
+    	$this->set(compact('vendas'));
+    	$this->set('_serialize', ['vendas']);
     }
 
     /**
@@ -75,32 +88,36 @@ class VendasController extends AppController
 
     /**
      * Edit method
-     *
-     * @param string|null $id Venda id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     *Esse metodo não está mais habilitado
+     *em seu lugar foi implementado a função CANCELA
+     *sendo assim, não é mais permitido editar uma venda
+     *somente cancela-la e refaze-la
      */
     public function edit($id = null)
     {
-        $venda = $this->Vendas->get($id, [
-            'contain' => ['Produtos']
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $venda = $this->Vendas->patchEntity($venda, $this->request->data);
-            if ($this->Vendas->save($venda)) {
-                $this->Flash->success(__('The venda has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The venda could not be saved. Please, try again.'));
-            }
-        }
-        $clientes = $this->Vendas->Clientes->find('list', ['limit' => 200]);
-        $funcionarios = $this->Vendas->Funcionarios->find('list', ['limit' => 200]);
-        $produtos = $this->Vendas->Produtos->find('list', ['limit' => 200]);
-        $this->set(compact('venda', 'clientes', 'funcionarios', 'produtos'));
-        $this->set('_serialize', ['venda']);
+    	return $this->redirect(['action'=>'index']);
     }
 
+    public function cancela($id=null){
+    	$venda = $this->Vendas->get($id, [
+    			'contain' => ['Produtos']
+    	]);
+    	
+    	$venda->cancelada = 1;
+    	foreach ($venda->produtos as $produto){
+    		$produto->em_estoque = 1;
+    	}
+    	
+    	$venda->dirty('produtos', true);
+    	if($this->Vendas->save($venda, ['associated' => ['Produtos']] )){
+    		$this->Flash->success("Cancelamento efetuado com sucesso");
+    		return $this->redirect(['action'=>'index']);
+    	}
+    	
+    	
+    }
+    
+    
     /**
      * Delete method
      *

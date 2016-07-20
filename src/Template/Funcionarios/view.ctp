@@ -6,12 +6,8 @@
     </ul>
 </nav>
 <div class="funcionarios view large-9 medium-8 columns content">
-    <h3><?= $funcionario->id ?></h3>
+    <h3><?= $funcionario->nome_completo ?></h3>
     <table class="vertical-table">
-        <tr>
-            <th><?= __('Nome Completo') ?></th>
-            <td><?= h($funcionario->nome_completo) ?></td>
-        </tr>
         <tr>
             <th><?= __('Nome Login') ?></th>
             <td><?= h($funcionario->nome_login) ?></td>

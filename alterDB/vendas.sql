@@ -13,3 +13,9 @@ ADD CONSTRAINT `fk_vendas_clientes1`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
+
+
+
+ALTER TABLE `brechoxica_sys`.`vendas` 
+ADD COLUMN `cancelada` TINYINT NULL DEFAULT 0 AFTER `funcionarios_id`;
+
