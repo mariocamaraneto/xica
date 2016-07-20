@@ -54,6 +54,8 @@ class VendasController extends AppController
      */
     public function add()
     {
+    	return $this->redirect(['action'=>'realiza']);
+    	
         $venda = $this->Vendas->newEntity();
         if ($this->request->is('post')) {
             $venda = $this->Vendas->patchEntity($venda, $this->request->data);

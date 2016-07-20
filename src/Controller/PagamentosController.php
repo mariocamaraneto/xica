@@ -55,6 +55,8 @@ class PagamentosController extends AppController
      */
     public function add()
     {
+    	return $this->redirect(['action'=>'realiza']);
+
         $pagamento = $this->Pagamentos->newEntity();
         if ($this->request->is('post')) {
             $pagamento = $this->Pagamentos->patchEntity($pagamento, $this->request->data);
