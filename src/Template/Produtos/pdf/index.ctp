@@ -1,6 +1,6 @@
 
 <div class="produtos index large-9 medium-8 columns content">
-    <h3>Relatório de Todos os produtos</h3>
+    <h3>Relatório de Todos os Produtos</h3>
     <br><br>
     <table cellpadding="0" cellspacing="0">
         <thead>

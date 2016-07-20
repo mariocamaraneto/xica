@@ -35,6 +35,25 @@ body {
     }
 }
 
+@media only screen and (max-width: 700px) {
+    .modal-content  {
+    	width: 70%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .modal-content  {
+    	width: 60%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .modal-content  {
+    	width: 45%;
+    }
+}
+
+
 
 /* The Close Button */
 .close {
