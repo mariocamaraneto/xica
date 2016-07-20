@@ -28,6 +28,9 @@ $sysDescription = 'Sistema Brechó da Xica';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    
+	<?php echo $this->Html->script('jquery');?>
+	<?php echo $this->Html->script('main');?>
     <?= $this->Html->css('estiloLogin.css')?>
 
 
@@ -42,11 +45,11 @@ $sysDescription = 'Sistema Brechó da Xica';
         <?= $this->fetch('content') ?>
     </div>
     <footer>
-    	Todos direitos resevados
-    	<br>
-    	Brechó da Xica
-    	<br>
-    	Ping Consultoria - 2016
+    	<p>Todos direitos resevados</p>
+    	
+    	<p>Brechó da Xica</p>
+
+    	<p>Ping Consultoria - 2016</p>
     </footer>
 </body>
 </html>

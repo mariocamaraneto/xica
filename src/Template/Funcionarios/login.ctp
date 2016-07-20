@@ -1,31 +1,43 @@
-
-<div class='painel-central'>
-	<div class="row">	
-			<h3>Painel de acesso ao sistema</h3>
-	</div>
-
-	<?= $this->Form->create() ?>
-		<div class="row">
-			<div class="large-12 column">
-				<?= $this->Form->input('nome_login', [
-						'label'=>'Nome de acesso do funcionário', 
-						'class' => 'campos-texto'
+<!-- INICIO - Painel suspenso que mostra os produtos resultados da pesquisa  -->
+	<div id="myModal" class="modal">
+	
+		<!-- Modal content -->
+		<div class="modal-content">
+				
+				<h4>Painel de acesso ao sistema</h4>
+				
+				<?= $this->Form->create() ?>
+					<div class="row">
+						<div class="large-10 large-offset-1 column">
+							<?= $this->Form->input('nome_login', [
+									'label'=>'Login do Funcionário', 
+									'class' => 'campos-texto'
+									
+							]) ?>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-10 large-offset-1 column">
+							<?= $this->Form->input('senha', [
+										'type' => 'password',
+										'label'=>'Senha', 
+										'class' => 'campos-texto'
+							]) ?>
+						</div>
+					</div>
 						
-				]) ?>
-			</div>
+					<div class="botao">
+						<?= $this->Form->button('Login', ['class'=> 'button round']) ?>
+					</div>
+				<?= $this->Form->end() ?>
+				
+	
+	
 		</div>
-		<div class="row">
-			<div class="large-12 column">
-				<?= $this->Form->input('senha', [
-							'type' => 'password',
-							'label'=>'Senha', 
-							'class' => 'campos-texto'
-				]) ?>
-			</div>
-		</div>
-			
-		<div class="botao">
-			<?= $this->Form->button('Login') ?>
-		</div>
-	<?= $this->Form->end() ?>
+	</div>
+<!-- FIM - Painel suspenso que mostra os produtos resultados da pesquisa  -->
+
+<script type="text/javascript">
+	$('#myModal').show();
+</script>
 </div>

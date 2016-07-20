@@ -1,82 +1,50 @@
 @CHARSET "UTF-8";
 
-body{
-	width: 100%;
-	background-color: #0b3c47;
+body {
+    background-image: url("/webroot/img/azulejos.jpg");
+    background-color: #cccccc;
 }
 
-footer{
-	background-color: #0b3c47;
-	display:relative;
-	margin:auto;
-	width: 100%;
-	text-align:center;
-	color: #FBB040;
-	font-size: 0.7em;  
+ /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 
-.container{
-	border-top:  100px solid;
-	border-top-width:2em;
-	border-top-color: #0b3c47;
-	display:relative;
-	margin:auto;
-	width: 400px;
-	background-color: #adc7cb;
+/* Modal Content/Box */
+.modal-content {
+    background-color: rgba(240,240,240,0.90);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    text-align: center;
 }
 
-.campos-texto {
-	-moz-box-shadow: 2px 2px 0 #4A73A2 		!important;
-	-webkit-box-shadow: 2px 2px 0 #4A73A2 	!important;
-	box-shadow: 1px 1px 0 #370745 			!important;
-	border: 1px solid #4A73A2 				!important;
-	background-color: #f5f5f5				!important;
-	padding: 10px							!important;
-	font-size: 14px							!important;
-	color: #555								!important;
-	width: 100%								!important;
-	height: 38px							!important;
-	margin-bottom: 10px						!important;
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.botao {
-	position: absolute;
-	left:50%;
-	margin-left: -52px;
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.painel-central{
-	display:relative; 
-	margin:auto; 
-	margin-top: 5em;
-	width: 400px;
-	padding: 1px;
+footer {
+	text-align: center;
 }
 
-@media (min-width: 768px) {
-  .container {
-    width: 740px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1160px;
-  }
-}
-
-.botao-superior{
-	font-size: 15px;
-	color: #fff;
-	display: block;
-	font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
-	font-weight: normal;
-	padding-left: 0.9375rem;
-	padding: 12px 0 12px 0.9375rem;
-	text-transform: none;
-	width: 100%;
-}

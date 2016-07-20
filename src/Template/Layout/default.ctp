@@ -93,7 +93,7 @@ $sysDescription = 'Sistema Brechó da Xica';
         	</ul>
         
             <ul class="botao-sair">
-               	<li><a class="botao-sair" href="funcionarios/logout">Sair</a></li>
+               	<li><a class="botao-sair" href="/funcionarios/logout">Sair</a></li>
             </ul>
         </div>
     </nav>
