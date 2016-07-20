@@ -27,7 +27,7 @@
 					</div>
 						
 					<div class="botao">
-						<?= $this->Form->button('Login', ['class'=> 'button round']) ?>
+						<?= $this->Form->button('Login', ['class'=> 'button']) ?>
 					</div>
 				<?= $this->Form->end() ?>
 				
