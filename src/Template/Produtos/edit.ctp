@@ -18,10 +18,10 @@
             echo $this->Form->input('marca');
             echo $this->Form->input('material');
             echo $this->Form->input('cor');
-            echo $this->Form->input('referencia');
+            echo $this->Form->input('referencia', ['label'=>'Referência']);
             echo $this->Form->input('custo_bruto');
-            echo $this->Form->input('preco');
-            echo $this->Form->input('descricao');
+            echo $this->Form->input('preco', ['label'=>'Preço']);
+            echo $this->Form->input('descricao', ['label'=>'Descrição']);
             echo $this->Form->input('fornecedor_id', ['options' => $fornecedores]);
             echo "Em estoque: ";
             echo $this->Form->radio('em_estoque', [1=>'Sim', 0=>'Não'], ['value'=>$produto->em_estoque]);

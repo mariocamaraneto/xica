@@ -43,7 +43,7 @@ $sysDescription = 'Sistema Brechó da Xica';
         <div class="top-bar-section">
         	<ul class='barra-superior'>
         		<li>
-        			<?php  echo $this->Html->link('Funcionarios', [
+        			<?php  echo $this->Html->link('Funcionários', [
 							   						'controller' => 'Funcionarios', 
 							  						'action' => 'index',
 							  						'_full' => true,

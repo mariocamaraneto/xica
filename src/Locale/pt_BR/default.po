@@ -395,8 +395,20 @@ msgstr "Cadastro de Fornecedor"
 msgid "List Fornecedores"
 msgstr "Mostrar Todos Fornecedores"
 
-msgid ""
-msgstr ""
+msgid "Edit Fornecedor"
+msgstr "Editar Fornecedor"
+
+msgid "Add Cliente"
+msgstr "Cadastrar Cliente"
+
+msgid "Add Funcionario"
+msgstr "Cadastrar Funcionário"
+
+msgid "Add Fornecedor"
+msgstr "Cadastrar Fornecedor"
+
+msgid "Add Produto"
+msgstr "Cadastrar Produto"
 
 msgid ""
 msgstr ""
@@ -404,11 +416,11 @@ msgstr ""
 msgid ""
 msgstr ""
 
+msgid ""
+msgstr ""
 
-
-
-
-
+msgid ""
+msgstr ""
 
 
 

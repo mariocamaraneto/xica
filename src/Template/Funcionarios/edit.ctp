@@ -28,7 +28,7 @@
         		<?php echo $this->Form->input('senha'); ?>
         	</div>
         	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('CPF', ['maxlength' => '11']); ?>
+        		<?php echo $this->Form->input('CPF'); ?>
         	</div>
         </div>
         <div class="row">

@@ -32,9 +32,9 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('referencia') ?></th>
+                <th><?= $this->Paginator->sort('referencia', ['label'=>'Referência']) ?></th>
                 <th><?= $this->Paginator->sort('nome') ?></th>
-                <th><?= $this->Paginator->sort('preco') ?></th>
+                <th><?= $this->Paginator->sort('preco', ['label'=>'Preço']) ?></th>
                 <th><?= $this->Paginator->sort('em_estoque') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>

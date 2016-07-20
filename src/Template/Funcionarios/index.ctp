@@ -9,7 +9,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('nome_completo') ?></th>
+                <th><?= $this->Paginator->sort('nome_completo', ['label'=>'Nome']) ?></th>
                 <th><?= $this->Paginator->sort('nome_login', 'Login')?></th>
                 <th><?= $this->Paginator->sort('telefone') ?></th>
                 <th><?= $this->Paginator->sort('admin') ?></th>

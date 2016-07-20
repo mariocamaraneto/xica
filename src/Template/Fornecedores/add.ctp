@@ -24,3 +24,6 @@
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+
+
+<?php echo $this->Html->script('validaCNPJ-CPF'); ?>

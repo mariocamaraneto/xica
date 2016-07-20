@@ -4,13 +4,6 @@
         <li><?= $this->Html->link(__('Edit Pagamento'), ['action' => 'edit', $pagamento->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Pagamento'), ['action' => 'delete', $pagamento->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pagamento->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Pagamentos'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Pagamento'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedores', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['controller' => 'Funcionarios', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Funcionario'), ['controller' => 'Funcionarios', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vendas Produtos'), ['controller' => 'VendasProdutos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vendas Produto'), ['controller' => 'VendasProdutos', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="pagamentos view large-9 medium-8 columns content">
