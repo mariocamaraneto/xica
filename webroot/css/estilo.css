@@ -1,5 +1,16 @@
 @CHARSET "UTF-8";
 
+fieldset > fieldset {
+	border: 1px solid #ddd;
+	background-color: #eee;
+}
+
+fieldset > fieldset legend {
+    line-height: 0.9rem;
+    font-size: 0.8rem;
+    color: #0080c0;
+}
+
 .container {
   padding-right: 0px;
   padding-left: 0px;

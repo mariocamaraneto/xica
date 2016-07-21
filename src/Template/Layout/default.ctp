@@ -26,11 +26,12 @@ $sysDescription = 'Sistema Brechó da Xica';
     </title>
     <?= $this->Html->meta('icon') ?>
 
+    <?= $this->Html->css('estilo.css')?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
-    <?= $this->Html->css('estilo.css')?>
 
 	<?php echo $this->Html->script('jquery');?>
+	<?php echo $this->Html->script('jquery.maskedinput.min.js'); ?>
 	<?php echo $this->Html->script('main');?>
 
     <?= $this->fetch('meta') ?>
