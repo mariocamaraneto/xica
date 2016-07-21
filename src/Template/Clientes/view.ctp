@@ -54,7 +54,6 @@
                 <th><?= __('Total') ?></th>
                 <th><?= __('Desconto') ?></th>
                 <th><?= __('Pagamento') ?></th>
-                <th><?= __('Funcionários') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($cliente->vendas as $vendas): ?>
@@ -63,7 +62,6 @@
                 <td><?= $this->Number->currency($vendas->total) ?></td>
                 <td><?= $this->Number->currency($vendas->desconto) ?></td>
                 <td><?= $vendas->forma_pagamento ?></td>
-                <td><?= $vendas->funcionarios_id ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Vendas', 'action' => 'view', $vendas->id]) ?>
                 </td>

@@ -444,17 +444,13 @@ table tr:nth-of-type(even) {
     background: none;
 }
 
-fieldset:not(.groupbox) {
+fieldset {
     border: none;
     padding: 1.25rem;
     margin: 1.125rem 0;
 }
 
-fielset > fielset {
-	border: 1px solid #f00;
-}
-
-fieldset legend:not(.groupbox) {
+fieldset legend {
     border-bottom: 2px solid #1798A5;
     width: 100%;
     line-height: 2rem;

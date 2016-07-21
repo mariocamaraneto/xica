@@ -16,8 +16,8 @@
     <fieldset>
         <legend><?= __('Edit Cliente') ?></legend>
 
-		<fieldset class='groupbox'>
-	        <legend class='groupbox'>Informações Essenciais</legend>
+		<fieldset>
+	        <legend>Informações Essenciais</legend>
 	        <div class="row">
 	        	<div class="large-6 columns">    
 	        		<?php echo $this->Form->input('nome'); ?>
@@ -46,8 +46,8 @@
 	        	</div>
 	        </div>
     	</fieldset>
-    	<fieldset class='groupbox'>
-    	<legend class='groupbox'>Informações Complementares</legend>
+    	<fieldset>
+    	<legend>Informações Complementares</legend>
 			<div class="row">
 	        	<div class="large-6 columns">    
 	        		<?php echo $this->Form->input('endereco', ['label'=>'Endereço']); ?>

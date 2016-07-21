@@ -9,6 +9,8 @@ fieldset > fieldset legend {
     line-height: 0.9rem;
     font-size: 0.8rem;
     color: #0080c0;
+    border-bottom: none;
+    width: auto;
 }
 
 .container {
