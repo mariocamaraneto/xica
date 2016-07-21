@@ -78,6 +78,15 @@ class ClientesTable extends Table
 
         $validator
             ->allowEmpty('observacoes');
+        
+        $validator
+        	->allowEmpty('num_sapato');
+        
+        $validator
+        	->allowEmpty('num_roupa');
+        	
+        $validator
+        	->allowEmpty('cpf');
 
         return $validator;
     }
