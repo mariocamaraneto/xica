@@ -1,11 +1,8 @@
 <nav class="large-2 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading">Ações</li>
+        <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Produto'), ['action' => 'add']) ?></li>
-    </ul>
-    <ul class="side-nav">
-        <li class="heading">Lsitagens</li>
-        <li><?= $this->Html->link('Mostrar Produtos Fora de Estoque', ['action' => 'listforaestoque'])?>
+        <li><?= $this->Html->link('Mostrar Produtos em Estoque', ['action' => 'index'])?>
         <li><?= $this->Html->link(__('Relatóriode Todos Produtos'), ['controller' => 'Produtos', 'action' => 'index.pdf']) ?></li>
     </ul>
 </nav>

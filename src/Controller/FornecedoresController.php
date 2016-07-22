@@ -114,11 +114,16 @@ class FornecedoresController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $fornecedor = $this->Fornecedores->get($id);
-        if ($this->Fornecedores->delete($fornecedor)) {
+        try {
+        	$this->Fornecedores->delete($fornecedor);
             $this->Flash->success(__('O fornecedor foi deletado com sucesso'));
-        } else {
-            $this->Flash->error(__('Esse fornecedor não pode ser deletado.'));
+        } 
+        catch (\Exception $e){
+            $this->Flash->error(__('Esse fornecedor não pode ser deletado. Existe movimentações em seu nome'));
         }
-        return $this->redirect(['action' => 'index']);
+        finally
+        {
+        	return $this->redirect(['action' => 'index']);
+        }
     }
 }

@@ -51,8 +51,7 @@ class FornecedoresTable extends Table
             ->notEmpty('nome');
 
         $validator
-            ->allowEmpty('CPF_CNPJ')
-            ->add('CPF_CNPJ', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->allowEmpty('CPF_CNPJ');
 
         $validator
             ->allowEmpty('endereco');
@@ -86,8 +85,6 @@ class FornecedoresTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->isUnique(['CPF_CNPJ']));
         return $rules;
     }
 }

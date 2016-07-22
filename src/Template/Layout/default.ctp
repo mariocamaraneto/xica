@@ -24,11 +24,21 @@ $sysDescription = 'Sistema Brechó da Xica';
         <?= $sysDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
+    
+    <!-- tempo para recarregar a página e ir para tela de login -->
+    <?php 
+    	use Cake\Core\Configure;
+  		$timeSec = Configure::read('Session')['timeout'] * 60 + 10;
+  	?>
+	 <meta http-equiv="refresh" content="<?= $timeSec ?>" />
+	 
+	 
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('estilo.css')?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    
 
 	<?php echo $this->Html->script('jquery');?>
 	<?php echo $this->Html->script('jquery.maskedinput.min.js'); ?>

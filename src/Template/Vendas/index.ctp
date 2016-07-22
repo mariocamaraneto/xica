@@ -1,7 +1,10 @@
 <nav class="large-2 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+   	<ul class="side-nav">
+        <li class="heading">Ações</li>
         <li><?= $this->Html->link(__('New Venda'), ['action' => 'realiza']) ?></li>
+    </ul>
+    <ul class="side-nav">
+        <li class="heading">Listagens</li>
         <li><?= $this->Html->link(__('Mostrar Vendas Canceladas'), ['action' => 'listcanceladas']) ?></li>
     </ul>
 </nav>

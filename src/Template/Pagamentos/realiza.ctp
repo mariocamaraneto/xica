@@ -64,7 +64,7 @@
 		<div class='large-4 large-offset-4 columns'>
 			<ul class="pricing-table">
 				<li class="title">Total a pagar</li>
-				<li class="price" id="valorTotal">R$ 0,00</li>
+				<li class="price" id="valorTotal">R$0,00</li>
 			</ul>
 		</div>
 	</div>

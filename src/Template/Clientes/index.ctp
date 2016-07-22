@@ -34,7 +34,7 @@
             <tr>
                 <th><?= $this->Paginator->sort('nome') ?></th>
                 <th><?= $this->Paginator->sort('telefone') ?></th>
-                <th><?= $this->Paginator->sort('email') ?></th>
+                <th>Num Roupa/Sapato</th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -43,7 +43,7 @@
             <tr>
                 <td><?= h($cliente->nome) ?></td>
                 <td><?= h($cliente->telefone) ?></td>
-                <td><?= h($cliente->email) ?></td>
+                <td><?= h($cliente->num_roupa) ?> / <?= h($cliente->num_sapato) ?> </td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $cliente->id]) ?>
                     /

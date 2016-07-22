@@ -51,7 +51,9 @@ class ProdutosController extends AppController
     		
     	}else 
     	{
-    		$this->paginate = ['order'=>['em_estoque'=>'DESC']];
+    		$this->paginate = ['order'=>['id'=>'DESC'],
+    						'conditions' => ['em_estoque'=>'1'],
+    		];
 	        $produtos = $this->paginate($this->Produtos);
     	}
     	
@@ -61,6 +63,18 @@ class ProdutosController extends AppController
 
     }
 
+    public function listForaEstoque(){
+    	$this->paginate = ['order'=>['id'=>'DESC'],
+    			'conditions' => ['em_estoque'=>'0'],
+    	];
+    	$produtos = $this->paginate($this->Produtos);
+    	 
+    	//retorna todos os valores para a View
+    	$this->set(compact('produtos'));
+    	$this->set('_serialize', ['produtos']);
+    }
+    
+    
     /**
      * View method
      *

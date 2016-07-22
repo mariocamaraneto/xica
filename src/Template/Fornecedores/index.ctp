@@ -2,8 +2,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Fornecedor'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="fornecedores index large-9 medium-8 columns content">

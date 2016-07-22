@@ -4,7 +4,7 @@ var total = 0;
 
 // document.getElementById("total").innerHTML = "R$ 2,00";
 
-$('#valorTotal').text("R$ 0,00");
+$('#valorTotal').text("R$0,00");
 var produtos = null;
 
 function insereProdutoTabela(produto) {
@@ -54,9 +54,9 @@ function mostraOpcoes(fornecedores) {
 	$('#listaDeForncedoresModal').html('');
 	// apresenta
 	for (var i = 0; i < fornecedores.length; i++) {
-		var novaLinha = "<tr id='" + i + "'>";
+		var novaLinha = "<tr id='" + i + "' style=' cursor: pointer;'>";
 
-		novaLinha += "<td>" + fornecedores[i].nome + "</td>";
+		novaLinha += "<td>" + fornecedores[i].nome + "</a></td>";
 		novaLinha += "<td>" + fornecedores[i].telefone + "</td>";
 
 		novaLinha += "</tr>";

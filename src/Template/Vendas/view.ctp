@@ -1,7 +1,10 @@
 <nav class="large-2 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $venda->cancelada ? '' : '<li class="heading"> Ações </li>' ?> </li>
         <li><?= $venda->cancelada ? '' : $this->Form->postLink(__('Cancelar Venda'), ['action' => 'cancela', $venda->id], ['confirm' => __('Deseja cancelar esta vendas?')]) ?> </li>
+    </ul>
+    <ul class="side-nav">
+        <li class="heading">Listagens</li>
         <li><?= $this->Html->link(__('List Vendas'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('Mostrar Vendas Canceladas'), ['action' => 'listcanceladas']) ?></li>
     </ul>
@@ -49,7 +52,6 @@
                 <th><?= __('Nome') ?></th>
                 <th><?= __('Marca') ?></th>
                 <th><?= __('Preço') ?></th>
-                <th><?= __('Fornecedor') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($venda->produtos as $produtos): ?>
@@ -57,7 +59,6 @@
                 <td><?= h($produtos->nome) ?></td>
                 <td><?= h($produtos->marca) ?></td>
                 <td><?= $this->Number->currency($produtos->preco) ?></td>
-                <td><?= h($produtos->fornecedor_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Produtos', 'action' => 'view', $produtos->id]) ?>
                     /

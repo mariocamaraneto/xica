@@ -1,70 +1,87 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $produto->id],
-                ['confirm' => __('Tem certeza que deseja deletar "{0}"?', $produto->nome)]
-            )
-        ?></li>
-     </ul>
+	<ul class="side-nav">
+		<li class="heading"><?= __('Actions') ?></li>
+		<li><?=$this->Form->postLink ( __ ( 'Delete' ), [ 'action' => 'delete',$produto->id ], [ 'confirm' => __ ( 'Tem certeza que deseja deletar "{0}"?', $produto->nome ) ] )?></li>
+	</ul>
 </nav>
 <div class="produtos form large-9 medium-8 columns content">
-    <?= $this->Form->create($produto) ?>
+    <?= $this->Form->create($produto)?>
     <fieldset>
-        <legend><?= __('Edit Produto') ?></legend>
-        
-        <div class="row">
-        	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('nome'); ?>
+		<legend><?= __('Edit Produto') ?></legend>
+
+		<fieldset>
+			<legend>Informações Básicas</legend>
+			<div class="row">
+				<div class="large-6 columns">    
+        			<?php echo $this->Form->input('nome'); ?>
+        		</div>
+				<div class="large-6 columns">    
+	        		<?php echo $this->Form->input('referencia', ['label'=>'Referência']); ?>
+        		</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">    
+	        		<?php echo $this->Form->input('custo_bruto', ['label'=>'Preço de Custo', 'type'=>'text']); ?>
+	        	</div>
+				<div class="large-6 columns">    
+        	    	<?php echo $this->Form->input('preco', ['label'=>'Preço de Venda', 'type'=>'text']); ?>
+	        	</div>
+	        	<?php echo $this->Html->script('jquery.maskMoney.min');?>
+   				<?= $this->fetch('script')?>
+	        	<script type="text/javascript">
+					$('#custo-bruto').maskMoney();
+					$('#preco').maskMoney();
+	        	</script>
+			</div>
+			<div class='row'>
+				<div class="large-6 columns">
+					<label>Fornecedor</label>
+	        	<?php
+										$optFornecedores = [ ];
+										foreach ( $fornecedores as $fornecedor ) {
+											$optFornecedores [$fornecedor->id] = $fornecedor->nome;
+										}
+										echo $this->Form->select ( 'fornecedor_id', $optFornecedores );
+										?> 
+	        		<!--<?php echo $this->Form->input('fornecedor_id', ['options' => $fornecedores]); ?> -->
+				</div>
+				<div class="large-6 columns">
+					<label style='margin-right: 10px; margin-bottom: 8px;'>Em estoque:
+					</label> <label for="em-estoque-1"
+						style='display: inline; margin-right: 7px;'> <input
+						name="em_estoque" value="1" id="em-estoque-1" checked="checked"
+						type="radio">Sim
+					</label> <label for="em-estoque-0" style='display: inline'><input
+						name="em_estoque" value="0" id="em-estoque-0" type="radio">Não</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">    
+        			<?php echo $this->Form->input('tamanho'); ?>
+        		</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Informações Complementares</legend>
+			<div class="row">
+				<div class="large-6 columns">    
+        			<?php echo $this->Form->input('material'); ?>
         	</div>
-        	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('marca'); ?>
-        	</div>
-        </div>
-        <div class="row">
-        	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('material'); ?>
-        	</div>
-        	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('cor'); ?>
-        	</div>
-        </div>
-        <div class="row">
-        	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('referencia', ['label'=>'Referência']); ?>
-        	</div>
-        	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('custo_bruto'); ?>
-        	</div>
-        </div>
-        <div class="row">
-        	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('preco', ['label'=>'Preço']); ?>
-        	</div>
-        	<div class="large-6 columns">    
-        		<?php echo $this->Form->input('descricao', ['label'=>'Descrição']); ?>
-        	</div>
-        </div>
-        <div class="row">
-        	<div class="large-6 columns">   
-        	<?php 
-        			$optFornecedores = [];
-        			foreach ($fornecedores as $fornecedor)
-        			{
-        				$optFornecedores[$fornecedor->id] = $fornecedor->nome;
-        			}
-        			echo $this->Form->select('fornecedor_id', $optFornecedores);
-        		?> 
-        		<!--<?php echo $this->Form->input('fornecedor_id', ['options' => $fornecedores]); ?> -->
-        	</div>
-        	<div class="large-6 columns">    
-        		<label>Em estoque</label>
-        		<?php echo $this->Form->radio('em_estoque',[1=>"Sim", 0=>'Não'],['value'=>$produto->em_estoque]); ?>
-        	</div>
-        </div>
-        
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+				<div class="large-6 columns">    
+        			<?php echo $this->Form->input('cor'); ?>
+        		</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">
+        	   		<?php echo $this->Form->input('marca'); ?>
+        		</div>
+				<div class="large-6 columns">    
+        			<?php echo $this->Form->input('descricao', ['label'=>'Descrição']); ?>
+        		</div>
+			</div>
+		</fieldset>
+		
+	</fieldset>
+    <?= $this->Form->button(__('Submit'))?>
+    <?= $this->Form->end()?>
 </div>

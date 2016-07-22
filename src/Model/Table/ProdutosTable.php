@@ -84,6 +84,9 @@ class ProdutosTable extends Table
         $validator
             ->integer('em_estoque')
             ->allowEmpty('em_estoque', 1);
+        
+        $validator
+        	->allowEmpty('tamanho');
 
         return $validator;
     }

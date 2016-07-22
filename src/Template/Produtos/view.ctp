@@ -9,12 +9,28 @@
     <h3><?= h($produto->nome) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Referencia') ?></th>
+            <th><?= __('Referência') ?></th>
             <td><?= h($produto->referencia) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Preço de Custo') ?></th>
+            <td><?= $this->Number->currency($produto->custo_bruto) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Preço de Venda') ?></th>
+            <td><?= $this->Number->currency($produto->preco) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Fornecedor') ?></th>
+            <td><?= $produto->has('fornecedor') ? $this->Html->link($produto->fornecedor->nome, ['controller' => 'Fornecedores', 'action' => 'view', $produto->fornecedor->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Marca') ?></th>
             <td><?= h($produto->marca) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Tamanho') ?></th>
+            <td><?= $produto->tamanho?></td>
         </tr>
         <tr>
             <th><?= __('Material') ?></th>
@@ -25,20 +41,8 @@
             <td><?= h($produto->cor) ?></td>
         </tr>
         <tr>
-            <th><?= __('Descricao') ?></th>
+            <th><?= __('Descrição') ?></th>
             <td><?= h($produto->descricao) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Fornecedor') ?></th>
-            <td><?= $produto->has('fornecedor') ? $this->Html->link($produto->fornecedor->nome, ['controller' => 'Fornecedores', 'action' => 'view', $produto->fornecedor->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Custo Bruto') ?></th>
-            <td><?= $this->Number->format($produto->custo_bruto) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Preco') ?></th>
-            <td><?= $this->Number->format($produto->preco) ?></td>
         </tr>
         <tr>
             <th><?= __('Em estoque') ?></th>
@@ -46,32 +50,24 @@
         </tr>
     </table>
     <div class="related">
-        <h4><?= __('Related Vendas') ?></h4>
+        <h4><?= __('Vendas Relacionadas') ?></h4>
         <?php if (!empty($produto->vendas)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th><?= __('Id') ?></th>
                 <th><?= __('Data') ?></th>
                 <th><?= __('Total') ?></th>
                 <th><?= __('Desconto') ?></th>
                 <th><?= __('Forma Pagamento') ?></th>
-                <th><?= __('Cliente Id') ?></th>
-                <th><?= __('Funcionarios Id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($produto->vendas as $vendas): ?>
             <tr>
-                <td><?= h($vendas->id) ?></td>
                 <td><?= h($vendas->data) ?></td>
-                <td><?= h($vendas->total) ?></td>
-                <td><?= h($vendas->desconto) ?></td>
+                <td><?= $this->Number->currency($vendas->total) ?></td>
+                <td><?= $this->Number->currency($vendas->desconto) ?></td>
                 <td><?= h($vendas->forma_pagamento) ?></td>
-                <td><?= h($vendas->cliente_id) ?></td>
-                <td><?= h($vendas->funcionarios_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Vendas', 'action' => 'view', $vendas->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Vendas', 'action' => 'edit', $vendas->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Vendas', 'action' => 'delete', $vendas->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vendas->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

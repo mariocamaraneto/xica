@@ -39,10 +39,10 @@
 	        </div>
 	        <div class="row">
 	        	<div class="large-3 columns">
-	        		<?php echo $this->Form->input('num_sapato', ['label'=>'Número Sapato']); ?>    
+	        		<?php echo $this->Form->input('num_roupa', ['label'=>'Número Roupa']); ?>    
 	        	</div>
 	        	<div class="large-3 columns end">
-	        		<?php echo $this->Form->input('num_roupa', ['label'=>'Número Roupa']); ?>    
+	        		<?php echo $this->Form->input('num_sapato', ['label'=>'Número Sapato']); ?>    
 	        	</div>
 	        </div>
     	</fieldset>
