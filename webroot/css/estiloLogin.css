@@ -27,35 +27,44 @@ body{
     border: 40px solid #888;
     border-image: url('/webroot/img/ModalBorderLogin.jpg') 28 round;
     padding: 20px 20px 0 20px;
-    width: 352px; /* Could be more or less, depending on screen size */
-   	height: 394px;
+    width: 35%; /* Could be more or less, depending on screen size */
     text-align: center;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 1000px) {
     .modal-content  {
-    	width: 75%;
+    	width: 40%;
+    }
+}
+
+
+@media only screen and (max-width: 850px) {
+    .modal-content  {
+    	width: 50%;
     }
 }
 
 @media only screen and (max-width: 700px) {
     .modal-content  {
-    	width: 70%;
-    }
-}
-
-@media only screen and (max-width: 850px) {
-    .modal-content  {
     	width: 60%;
     }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 500px) {
     .modal-content  {
-    	width: 45%;
+    	width: 80%;
+    	border: 15px solid #888;
+    	border-image: url('/webroot/img/ModalBorderLogin.jpg') 28 round;
     }
 }
 
+@media only screen and (max-width: 300px) {
+    .modal-content  {
+    	width: 90%;
+    	border: 5px solid #888;
+    	border-image: url('/webroot/img/ModalBorderLogin.jpg') 28 round;
+    }
+}
 
 
 /* The Close Button */
