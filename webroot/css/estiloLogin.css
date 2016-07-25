@@ -24,8 +24,8 @@ body{
 .modal-content {
     background-color: #fbf595;
     margin: 8% auto; /* 15% from the top and centered */
-    border: 46px solid #888;
-    border-image: url('/webroot/img/ModalBorderLogin.jpg') 46 round;
+    border: 40px solid #888;
+    border-image: url('/webroot/img/ModalBorderLogin.jpg') 28 round;
     padding: 20px 20px 0 20px;
     width: 352px; /* Could be more or less, depending on screen size */
    	height: 394px;
