@@ -44,13 +44,6 @@ $sysDescription = 'Sistema Brechó da Xica';
     <div class="clearfix container">
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
-    	<p>Todos direitos resevados</p>
-    	
-    	<p>Brechó da Xica</p>
-
-    	<p>Ping Consultoria - 2016</p>
-    </footer>
 </body>
 </html>
 

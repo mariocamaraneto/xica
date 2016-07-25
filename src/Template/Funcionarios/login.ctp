@@ -4,7 +4,7 @@
 		<!-- Modal content -->
 		<div class="modal-content">
 				
-				<h4>Painel de acesso ao sistema</h4>
+				<h3>Brechó da XICA</h3>
 				
 				<?= $this->Form->create() ?>
 					<div class="row">
