@@ -1,7 +1,11 @@
-<div
-	class="pagamentos index large-9 large-offset-2 medium-8 columns content">
-	<h3><?= __('Finalizando Pagamento') ?></h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Finalizando Pagamento</h3>
+		</div>	
+</div>
 
+<div class="pagamentos index large-9 large-offset-2 medium-8 columns">
 
 	<!-- 	INICIO - Caixa de pesquisa de clientes -->
 	<div class='row'>
@@ -25,7 +29,7 @@
 		] );
 		?>
 			<div class='row' style="margin-top: 1.6em;">
-				<div class='large-3 large-offset-3 columns'>Escolha a forma de pagamento</div>
+				<div class='large-3 large-offset-3 columns'>Forma de pagamento</div>
 				<div class='large-3 columns end'>
 					<?php echo $this->Form->select('formaPagamento',
 							[	'Dinheiro'=>'Dinheiro',

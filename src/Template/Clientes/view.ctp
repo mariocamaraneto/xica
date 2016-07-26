@@ -1,12 +1,19 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Editar Cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Deletar Cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
-    </ul>
-</nav>
-<div class="clientes view large-9 medium-8 columns content">
-    <h3><?= h($cliente->nome) ?></h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Visualização de Clientes</h3>
+		</div>	
+</div>
+
+<div class="clientes view large-8 large-offset-2 medium-10 medium-offset-1 columns">
+    <div class='row'>
+		<div class="large-7 columns">
+		    <h3><?= h($cliente->nome) ?></h3>
+    	</div>
+    	<div class="large-2 large-offset-3 columns end">
+    		<?= $this->Html->link(__('Editar'), ['action' => 'edit', $cliente->id], ['class'=>'button round small']) ?>
+    	</div>
+    </div>
     <table class="vertical-table">
         <tr>
             <th><?= __('Telefone') ?></th>

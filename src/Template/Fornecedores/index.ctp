@@ -1,16 +1,14 @@
-<nav class="large-2 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Fornecedor'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="fornecedores index large-9 medium-8 columns content">
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Lista de Fornecedores</h3>
+		</div>	
+</div>
+
+<div class="fornecedores index large-8 large-offset-2 medium-10 medium-offset-1 columns">
     
    	<div class='row'>
-		<div class='medium-5 large-6 columns'>
-	   		<h3 style="display:inline; margin-right:6em;"><?= __('Fornecedoras') ?></h3>
-		</div>
-		<div class='medium-8 large-4 columns'>
+		<div class='medium-8 large-5 large-offset-5 columns'>
 		    <!-- Pesquisa por nome do fornecedor -->
 		    <?php 
 		    	echo $this->Form->create(null, ['type'=>'get']);
@@ -62,6 +60,5 @@
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
         </ul>
-        <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>

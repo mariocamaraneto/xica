@@ -1,14 +1,13 @@
-<nav class="large-2 columns" id="actions-sidebar">
-	<ul class="side-nav">
-		<li class="heading"><?= __('Actions') ?></li>
-		<li><?=$this->Form->postLink ( __ ( 'Delete' ), [ 'action' => 'delete',$funcionario->id ], [ 'confirm' => __ ( 'Are you sure you want to delete # {0}?', $funcionario->id ) ] )?></li>
-		<li><?= $this->Html->link(__('List Funcionarios'), ['action' => 'index']) ?></li>
-	</ul>
-</nav>
-<div class="funcionarios form large-9 medium-8 columns content">
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Edição de Funcionário</h3>
+		</div>	
+</div>
+
+<div class="funcionarios form large-8 large-offset-2 medium-10 medium-offset-1 columns">
     <?= $this->Form->create($funcionario)?>
     <fieldset>
-		<legend><?= __('Edit Funcionario') ?></legend>
 
 		<fieldset>
 			<legend>Informações Essenciais</legend>
@@ -66,7 +65,7 @@
 		</fieldset>
 
 	</fieldset>
-    <?= $this->Form->button(__('Submit'))?>
+    <?= $this->Form->button(__('Submit'), ['class'=>'button round'])?>
     <?= $this->Form->end()?>
 </div>
 

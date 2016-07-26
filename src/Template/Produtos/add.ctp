@@ -1,18 +1,14 @@
-<nav class="large-2 columns" id="actions-sidebar">
-	<ul class="side-nav">
-		<li class="heading"><?= __('Actions') ?></li>
-		<li><?= $this->Html->link(__('List Produtos'), ['action' => 'index']) ?></li>
-		<li><?= $this->Html->link(__('List Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'index']) ?></li>
-		<li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedores', 'action' => 'add']) ?></li>
-		<li><?= $this->Html->link(__('List Vendas'), ['controller' => 'Vendas', 'action' => 'index']) ?></li>
-		<li><?= $this->Html->link(__('New Venda'), ['controller' => 'Vendas', 'action' => 'add']) ?></li>
-	</ul>
-</nav>
-<div class="produtos form large-9 medium-8  large-offset-1 columns content">
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Cadastro de Produtos</h3>
+		</div>	
+</div>
+
+<div class="produtos form large-8 large-offset-2 medium-10 medium-offset-1 columns">
     <?= $this->Form->create($produto)?>
 
     <fieldset>
-		<legend><?= __('Add Produto') ?></legend>
 
 		<fieldset>
 			<legend>Informações Básicas</legend>

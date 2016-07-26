@@ -1,51 +1,57 @@
 @CHARSET "UTF-8";
 
-fieldset > fieldset {
+fieldset>fieldset {
 	border: 1px solid #ddd;
 	background-color: #eee;
 }
 
-fieldset > fieldset legend {
-    line-height: 0.9rem;
-    font-size: 0.8rem;
-    color: #0080c0;
-    border-bottom: none;
-    width: auto;
-    background: white; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#FFF, #EEE); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#FFF, #EEE); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#FFF, #EEE); /* For Firefox 3.6 to 15 */
-  	background: linear-gradient(#FFF, #EEE); /* Standard syntax */
-  	border: 1px solid #EEE;
+fieldset>fieldset legend {
+	line-height: 0.9rem;
+	font-size: 0.8rem;
+	color: #0080c0;
+	border-bottom: none;
+	width: auto;
+	background: white; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(#FFF, #EEE);
+	/* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#FFF, #EEE);
+	/* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#FFF, #EEE);
+	/* For Firefox 3.6 to 15 */
+	background: linear-gradient(#FFF, #EEE); /* Standard syntax */
+	border: 1px solid #EEE;
 }
 
 .container {
-  padding-right: 0px;
-  padding-left: 0px;
-  margin-right: 0;
-  margin-left: 0;
-}
-@media (min-width: 768px) {
-  .container {
-    width: 740px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1160px;
-  }
+	padding-right: 0px;
+	padding-left: 0px;
+	margin-right: 0;
+	margin-left: 0;
 }
 
-.botao-superior{
+@media ( min-width : 768px) {
+	.container {
+		width: 740px;
+	}
+}
+
+@media ( min-width : 992px) {
+	.container {
+		width: 960px;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.container {
+		width: 1160px;
+	}
+}
+
+.botao-superior {
 	font-size: 15px;
 	color: #fff;
 	display: block;
-	font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 	font-weight: normal;
 	padding-left: 0.9375rem;
 	padding: 12px 0 12px 0.9375rem;
@@ -54,24 +60,11 @@ fieldset > fieldset legend {
 }
 
 .barra-superior a {
-	font-size: 1.0em		!important;
+	font-size: 1.0em !important;
 }
 
-.botao-sair{
-	float: right;
-	color: #FFF;
-	margin-right: 1em;
-}
-
-a.botao-sair{
-	font-size: 1.3em !important;
-	float: right;
-	display: block;
-	padding-left: 0;
-}
-
-.botao-pesquisar button{
-	margin:auto;
+.botao-pesquisar button {
+	margin: auto;
 	margin-top: 0.3em;
 	font-size: 0.75em;
 	padding: 0.5em 0.3em 0.6em 0.3em;
@@ -79,48 +72,105 @@ a.botao-sair{
 	background: #116D76;
 }
 
-
-
-
-
-
-
-
- /* The Modal (background) */
+/* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
+.listProdutos tr td {
+	margin: 1px;
+	padding: 2px;
+}
+
+.listProdutosEscolher tbody>tr {
+	cursor: pointer;
+}
+
+#btnProdutos {
+	margin: 2px;
+}
+
+/* INICIO - Código para mostrar o nome da tela de forma bonita */
+/* Desenha primeiro um retangulo que é o detalhe de quebra na frente do nome
+* 	Depois desenha um tringulo com bordas em uma divi em backgorund
+* 	Pro fim faz a caixa de texto quadrada na frente.
+* 	Exemplo de utilização:
+* 			<div id='parallelogram'></div> 
+* 			<div id="trianguloTituloTela"> 
+* 			<h3 id='tituloTela'> Venda</h3>
+* 			</div> 
+*/
+#trianguloTituloTela {
+	border-bottom: 40px solid #168e9c;
+	border-left: 0px solid transparent;
+	border-right: 40px solid transparent;
+	padding-right: 370px;
+	height: 0;
+	width: 0px;
+	margin-bottom: 10px;
+}
+#tituloTela {
+	background-color: #168e9c;
+	color: #fff;
+	margin: 0px;
+	padding-left: 7px;
+	height: 40px;
+	width: 370px;
+}
+#parallelogram {
+	width: 10px;
+	height: 40px;
+	position: absolute;
+	margin-left: 400px;
+	-webkit-transform: skew(45deg);
+	-moz-transform: skew(45deg);
+	-o-transform: skew(45deg);
+	background: #168e9c;
+}
+/* FIM- Código para mostrar o nome da tela de forma bonita */
+
+
+.bordaLogo {
+	border: 8px solid #888;
+	background-color: #116D76;
+	border-image: url('/webroot/img/ModalBorderLogin.jpg') 28 round;
+}
+
+#nomeLogo {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: -6px;
+	color: #fff;
+}

@@ -378,16 +378,16 @@ msgid "List Clientes"
 msgstr "Mostrar Todos Clientes"
 
 msgid "List Vendas"
-msgstr "Mostrar Todas Vendas"
+msgstr "Exibir as Vendas"
 
 msgid "New Venda"
 msgstr "Realizar Venda"
 
 msgid "List Produtos"
-msgstr "Mostrar Todos Produtos"
+msgstr "Exibir os Produtos"
 
 msgid "List Pagamento"
-msgstr "Mostrar Todos Pagamento"
+msgstr "Exibir os Pagamento"
 
 msgid "New Produto"
 msgstr "Cadastro de Produtos"
@@ -396,7 +396,7 @@ msgid "New Fornecedor"
 msgstr "Cadastro de Fornecedor"
 
 msgid "List Fornecedores"
-msgstr "Mostrar Todos Fornecedores"
+msgstr "Exibir os Fornecedores"
 
 msgid "Edit Fornecedor"
 msgstr "Editar Fornecedor"

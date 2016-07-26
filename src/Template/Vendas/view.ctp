@@ -1,16 +1,17 @@
-<nav class="large-2 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li><?= $venda->cancelada ? '' : '<li class="heading"> Ações </li>' ?> </li>
-        <li><?= $venda->cancelada ? '' : $this->Form->postLink(__('Cancelar Venda'), ['action' => 'cancela', $venda->id], ['confirm' => __('Deseja cancelar esta vendas?')]) ?> </li>
-    </ul>
-    <ul class="side-nav">
-        <li class="heading">Listagens</li>
-        <li><?= $this->Html->link(__('List Vendas'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Mostrar Vendas Canceladas'), ['action' => 'listcanceladas']) ?></li>
-    </ul>
-</nav>
-<div class="vendas view large-9 medium-8 columns content">
-    <h3>Visualização de Venda</h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Visualização de Venda</h3>
+		</div>	
+</div>
+
+<div class="vendas view large-8 large-offset-2 medium-8 columns">
+    <div class='row'>
+    	<div class="large-2 large-offset-10 columns end">
+    		 <?= $this->Html->link(__('Cancelar'), ['action' => 'cancela', $venda->id], 
+    		 		['class'=>'button round small','confirm' => 'Deseja realmente cancelar esta venda?']) ?>
+    	</div>
+    </div>
     <table class="vertical-table">
         <tr>
             <th><?= __('Data') ?></th>
@@ -29,7 +30,7 @@
         </tr>
         <tr>
             <th><?= __('Funcionário') ?></th>
-            <td><?= $venda->has('funcionario') ? $this->Html->link($venda->funcionario->nome, ['controller' => 'Funcionarios', 'action' => 'view', $venda->funcionario->id]) : '' ?></td>
+            <td><?= $venda->has('funcionario') ? $this->Html->link($venda->funcionario->nome_completo, ['controller' => 'Funcionarios', 'action' => 'view', $venda->funcionario->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Total') ?></th>

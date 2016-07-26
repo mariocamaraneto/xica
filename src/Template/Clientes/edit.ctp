@@ -1,20 +1,14 @@
-<nav class="large-2 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $cliente->id],
-                ['confirm' => ('Deseja realmente deletar o cliente ' . $cliente->nome . "?")]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Clientes'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="clientes form large-9 medium-8 columns content">
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Cadastro de Clientes</h3>
+		</div>	
+</div>
+
+<div class="clientes form large-8 large-offset-2 medium-10 medium-offset-1 columns">
     <?= $this->Form->create($cliente) ?>
     
     <fieldset>
-        <legend><?= __('Edit Cliente') ?></legend>
 
 		<fieldset>
 	        <legend>Informações Essenciais</legend>
@@ -75,6 +69,6 @@
         </fieldset>
 	</fieldset>
 
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button('Salvar', ['class'=>'button round']) ?>
     <?= $this->Form->end() ?>
 </div>

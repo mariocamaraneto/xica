@@ -135,6 +135,7 @@ class FuncionariosController extends AppController
     		
     		//não possui acesso
     		$this->Flash->error("Você não possui permissão de acesso ou digitou a senha errada.");
+    		return $this->redirect($this->Auth->logout());
     	}
     }
     

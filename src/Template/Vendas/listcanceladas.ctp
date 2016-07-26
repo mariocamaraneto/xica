@@ -1,12 +1,11 @@
-<nav class="large-2 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Venda'), ['action' => 'realiza']) ?></li>
-        <li><?= $this->Html->link(__('Mostrar Vendas Normais'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="vendas index large-9 medium-8 columns content">
-    <h3><?= __('Vendas Canceladas') ?></h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Vendas Canceladas</h3>
+		</div>	
+</div>
+
+<div class="vendas index large-8 large-offset-2 medium-11 columns">
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

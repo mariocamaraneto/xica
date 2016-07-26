@@ -1,15 +1,11 @@
-<nav class="large-2 columns" id="actions-sidebar">
-   	<ul class="side-nav">
-        <li class="heading">Ações</li>
-        <li><?= $this->Html->link(__('New Venda'), ['action' => 'realiza']) ?></li>
-    </ul>
-    <ul class="side-nav">
-        <li class="heading">Listagens</li>
-        <li><?= $this->Html->link(__('Mostrar Vendas Canceladas'), ['action' => 'listcanceladas']) ?></li>
-    </ul>
-</nav>
-<div class="vendas index large-9 medium-8 columns content">
-    <h3><?= __('Vendas') ?></h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Lista de Vendas</h3>
+		</div>	
+</div>
+
+<div class="vendas index large-8 large-offset-2 medium-11 columns">
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -44,6 +40,5 @@
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
         </ul>
-        <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>

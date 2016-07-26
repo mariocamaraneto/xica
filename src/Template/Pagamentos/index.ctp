@@ -1,12 +1,10 @@
-<nav class="large-2 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Novo Pagamento'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="pagamentos index large-9 medium-8 columns content">
-    <h3><?= __('Pagamentos') ?></h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Lista de Pagamentos</h3>
+		</div>	
+</div>
+<div class="pagamentos index large-8 large-offset-2 medium-10 medium-offset-1 columns">
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -41,6 +39,5 @@
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
         </ul>
-        <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>

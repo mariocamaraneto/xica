@@ -1,32 +1,24 @@
-<nav class="large-2 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading">Ações</li>
-        <li><?= $this->Html->link(__('New Produto'), ['action' => 'add']) ?></li>
-    </ul>
-    <ul class="side-nav">
-        <li class="heading">Lsitagens</li>
-        <li><?= $this->Html->link('Mostrar Produtos Fora de Estoque', ['action' => 'listforaestoque'])?>
-        <li><?= $this->Html->link(__('Relatóriode Todos Produtos'), ['controller' => 'Produtos', 'action' => 'index.pdf']) ?></li>
-    </ul>
-</nav>
-<div class="produtos index large-9 medium-8 columns content">
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Lista de Produtos</h3>
+		</div>	
+</div>
+
+<div class="produtos index large-8 large-offset-2 medium-10 medium-offset-1 columns">
 	<div class='row'>
-		<div class='medium-5 large-6 columns'>
-	   	 <h3 style="display:inline; margin-right:6em;"><?= __('Produtos') ?></h3>
-		</div>
-		<div class='small-5 medium-4 large-4 columns'>
-		    <!-- Pesquisa por [nome, marca, descrição, ...] do produto  -->
+		<div class='small-5 medium-4 large-5  large-offset-5 columns'>
+		    <!-- Pesquisa por [ref, nome, marca, descrição, ...] do produto  -->
 		    <?php 
 		    	echo $this->Form->create(null, ['type'=>'get']);
 		    	echo $this->Form->input('search', ['type'=>'text',
 		    			'label' => false,
 		    			'placeholder' => 'Digite aqui sua pesquisa',
-		    	]);
-		    ?>
+		    	]);?>
 	    </div>
 	    <div class=' medium-4 large-2 columns botao-pesquisar'>
 		    <?php 
-		    	echo $this->Form->button('Pesquisar');
+		    	echo $this->Form->button('Pesquisar', ['class'=>'button tiny round']);
 		    	echo $this->Form->end();
 		    ?>
 	    </div>

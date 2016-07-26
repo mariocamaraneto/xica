@@ -1,14 +1,14 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-	<ul class="side-nav">
-		<li class="heading"><?= __('Actions') ?></li>
-		<li><?=$this->Form->postLink ( __ ( 'Delete' ), [ 'action' => 'delete',$produto->id ], [ 'confirm' => __ ( 'Tem certeza que deseja deletar "{0}"?', $produto->nome ) ] )?></li>
-	</ul>
-</nav>
-<div class="produtos form large-9 medium-8 columns content">
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Edição de Produto</h3>
+		</div>	
+</div>
+
+<div class="produtos form large-8 large-offset-2 medium-10 medium-offset-1 columns">
+    
     <?= $this->Form->create($produto)?>
     <fieldset>
-		<legend><?= __('Edit Produto') ?></legend>
-
 		<fieldset>
 			<legend>Informações Básicas</legend>
 			<div class="row">
@@ -82,6 +82,6 @@
 		</fieldset>
 		
 	</fieldset>
-    <?= $this->Form->button(__('Submit'))?>
+    <?= $this->Form->button('Salvar', ['class'=>'button round'])?>
     <?= $this->Form->end()?>
 </div>

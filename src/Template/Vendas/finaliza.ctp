@@ -1,7 +1,11 @@
-<div
-	class="vendas index large-9 large-offset-2 medium-8 columns content">
-	<h3><?= __('Finalizando Venda') ?></h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Finalizando de Venda</h3>
+		</div>	
+</div>
 
+<div class="vendas index large-8 large-offset-2 medium-11 columns">
 
 	<!-- 	INICIO - Caixa de pesquisa de clientes -->
 	<div class='row'>
@@ -11,7 +15,7 @@
 							'autocomplete'=>"off",
 					] );
 					?>
-			<div class='large-8 large-offset-1 columns'>
+			<div class='large-8 large-offset-1 medium-8 medium-offset-2 columns'>
 			<!-- Pesquisa por nome do cliente -->
 			    <?php
 							echo $this->Form->input ( 'palavraPesquisaCliente', [ 
@@ -22,17 +26,18 @@
 							] );
 							?>
 		    </div>
-			<div class='large-2 columns'>
+			<div class='large-2 medium-2 columns'>
 			    <?php
 							echo $this->Form->button ( 'Pesquisar', [ 
 									'type' => 'submit',
-									'class' => 'button tiny round info' 
+									'class' => 'button tiny round info',
+									'style' => 'margin-top: 20px;',
 							] );
 							?>
 		    </div>
-		    <div class='large-1 columns end' >
+		    <div class='large-1 medium-2 columns end' >
 		    	<button class="button alert tiny round" type="button" 
-		    		style="display: none;" id="removerCliente">Remover</button>
+		    		style="display: none; margin-top: 20px; " id="removerCliente">Remover</button>
 		    </div>
 		<?php echo $this->Form->end();?>
 	</div>
@@ -45,12 +50,13 @@
 							'url' => false,
 							'id' => 'descontoForm',
 							'autocomplete'=>"off",
-					] );
-					?>
-			<div  class='large-4 large-offset-3 columns'>
+					] );?>
+					
+			<div  class='large-4 large-offset-3 medium-5 medium-offset-2 columns'>
 				<p>Digite o desconto nessa compra <strong>R$</strong></p>
 			</div>
-			<div class='large-2 columns end'>
+			
+			<div class='large-2 medium-3 columns end'>
 			<!-- Pesquisa por nome do cliente -->
 			    <?php
 							echo $this->Form->input ( 'valorDesconto', [ 
@@ -69,10 +75,10 @@
 	
 	
 	<div class='row' style="margin-top: 1em;">
-		<div class='large-3 large-offset-3 columns'>
+		<div class='large-3 large-offset-3 medium-5 medium-offset-2 columns'>
 			Escolha a forma de pagamento
 		</div>
-		<div class='large-3 columns end'>
+		<div class='large-3 medium-3 columns end'>
 			<select id="formaPagamento">
 			  <option>Dinheiro</option>
 			  <option>Cartão</option>
@@ -83,13 +89,13 @@
 			
 
 	<div class='row' style="margin-top: 4em;">
-		<div class='large-4 large-offset-1 end columns'>
+		<div class='large-4 large-offset-1 medium-4 medium-offset-2 end columns'>
 			<ul class="pricing-table">
 				<li class="title">Total da Venda</li>
 				<li class="price" id="valorTotal"><?php echo $this->Number->currency($total)?></li>
 			</ul>
 		</div>
-		<div class='large-3 large-offset-2 columns'>
+		<div class='large-3 large-offset-2 medium-4 columns'>
 				<button id="concluiVenda" class='button medium round' >Concluir Venda</button>
 		</div>
 	</div>

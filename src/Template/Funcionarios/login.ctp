@@ -10,7 +10,7 @@
 					<div class="row">
 						<div class="large-10 large-offset-1 column">
 							<?= $this->Form->input('nome_login', [
-									'label'=>'Login do Funcionário', 
+									'label'=>'Login', 
 									'class' => 'campos-texto'
 									
 							]) ?>

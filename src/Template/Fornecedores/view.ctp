@@ -1,23 +1,27 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Fornecedor'), ['action' => 'edit', $fornecedor->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Fornecedor'), ['action' => 'delete', $fornecedor->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fornecedor->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Fornecedores'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Fornecedor'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="fornecedores view large-9 medium-8 columns content">
-    <h3><?= h($fornecedor->nome) ?></h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Visualização de Fornecedores</h3>
+		</div>	
+</div>
+
+<div class="fornecedores view large-8 large-offset-2 medium-10 medium-offset-1 columns">
+    <div class='row'>
+		<div class="large-7 columns">
+		    <h3><?= h($fornecedor->nome) ?></h3>
+    	</div>
+    	<div class="large-2 large-offset-3 columns end">
+    		 <?= $this->Html->link(__('Editar'), ['action' => 'edit', $fornecedor->id], ['class'=>'button round small']) ?>
+    	</div>
+    </div>
+
     <table class="vertical-table">
         <tr>
-            <th><?= __('CPF CNPJ') ?></th>
+            <th><?= __('CPF/CNPJ') ?></th>
             <td><?= h($fornecedor->CPF_CNPJ) ?></td>
         </tr>
         <tr>
-            <th><?= __('Endereco') ?></th>
+            <th><?= __('Endereço') ?></th>
             <td><?= h($fornecedor->endereco) ?></td>
         </tr>
         <tr>
@@ -29,7 +33,7 @@
             <td><?= h($fornecedor->email) ?></td>
         </tr>
         <tr>
-            <th><?= __('Metodo de pagamento preferencial') ?></th>
+            <th><?= __('Método de pagamento preferencial') ?></th>
             <td><?= h($fornecedor->metodo_pagamento) ?></td>
         </tr>
         <tr>
@@ -46,11 +50,11 @@
         <?php if (!empty($fornecedor->produtos)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-            	<th><?= __('Referencia') ?></th>
+            	<th><?= __('Referência') ?></th>
                 <th><?= __('Nome') ?></th>
                 <th><?= __('Marca') ?></th>
                 <th><?= __('Custo Bruto') ?></th>
-                <th><?= __('Quantidade') ?></th>
+                <th><?= __('Em estoque') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($fornecedor->produtos as $produtos): ?>
@@ -59,7 +63,7 @@
                 <td><?= h($produtos->nome) ?></td>
                 <td><?= h($produtos->marca) ?></td>
                 <td><?= h($produtos->custo_bruto) ?></td>
-                <td><?= h($produtos->quantidade) ?></td>
+                <td><?= ($produtos->em_estoque) ? 'Sim':'Não;'?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Produtos', 'action' => 'view', $produtos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Produtos', 'action' => 'edit', $produtos->id]) ?>

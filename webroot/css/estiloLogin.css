@@ -2,13 +2,14 @@
 
 body{
 	background: radial-gradient( white, black 100%);
+	z-index: -1;
 }
 
  /* The Modal (background) */
 .modal {
     background-image:  url("/webroot/img/ping.png"), radial-gradient( #e9e9e9 10%, #ddd 30%, #888 90%);
     background-repeat: no-repeat,  no-repeat;
-    background-position: bottom right, center;
+    background-position: 97% 97%, center;
     display: none; /*Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -27,7 +28,7 @@ body{
     border: 40px solid #888;
     border-image: url('/webroot/img/ModalBorderLogin.jpg') 28 round;
     padding: 20px 20px 0 20px;
-    width: 35%; /* Could be more or less, depending on screen size */
+    width: 30%; /* Could be more or less, depending on screen size */
     text-align: center;
 }
 

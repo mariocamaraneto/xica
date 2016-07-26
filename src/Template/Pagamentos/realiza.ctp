@@ -1,14 +1,11 @@
-<nav class="large-2 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Pagamentos realizados'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div
-	class="vendas index large-9 medium-8 columns content">
-	<h3><?= __('Realizando Pagamento') ?></h3>
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Realizando Pagamento</h3>
+		</div>	
+</div>
 
-
+<div class="vendas index large-8 large-offset-2 medium-10 medium-offset-1 columns">
 
 	<!-- 	INICIO - Caixa de pesquisa de fornecedores -->
 	<div class='row'>
@@ -16,31 +13,25 @@
 							'url' => false,
 							'id' => 'pesquisaFornecedorForm',
 							'autocomplete'=>"off",
-					] );
-					?>
+					] ); ?>
 			<div class='large-6 large-offset-4 columns'>
 			<!-- Pesquisa por nome do produto -->
-			    <?php
-							echo $this->Form->input ( 'palavraPesquisaFornecedor', [ 
+			    <?php echo $this->Form->input ( 'palavraPesquisaFornecedor', [ 
 									'type' => 'text',
 									'label' => false,
 									'placeholder' => 'Pesquise o fornecedor aqui',
 									'id' => 'palavraPesquisaFornecedor' 
-							] );
-							?>
+							] ); ?>
 		    </div>
 		<div class='large-2 columns end'>
-			    <?php
-							echo $this->Form->button ( 'Pesquisar', [ 
+			    <?php echo $this->Form->button ( 'Pesquisar', [ 
 									'type' => 'submit',
 									'class' => 'button tiny round' 
-							] );
-							?>
+							] ); ?>
 		    </div>
 		<?php echo $this->Form->end();?>
 	</div>
 	<!-- 	FIM - Caixa de pesquisa de produtos -->
-
 
 
 	<table id='tableProdutos'>
@@ -69,7 +60,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 <!-- INICIO - Painel suspenso que mostra os produtos resultados da pesquisa  -->

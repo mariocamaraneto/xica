@@ -15,7 +15,7 @@ function insereProdutoTabelaSelecionados(produto) {
 	novaLinha += "<td>" + produto.nome + "</td>";
 	novaLinha += "<td>" + numeroParaDinheiro(produto.preco) + "</td>";
 
-	novaLinha += '<td> <button class="button alert tiny round" onclick="removeProdutoTabelaSelecionados(this,'
+	novaLinha += '<td> <button id="btnProdutos" class="button alert tiny round" onclick="removeProdutoTabelaSelecionados(this,'
 			+ produto.id + ')" type="button">Remover</button> </td>';
 
 	novaLinha += "</tr>";
