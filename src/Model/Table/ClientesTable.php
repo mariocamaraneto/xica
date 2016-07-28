@@ -58,8 +58,7 @@ class ClientesTable extends Table
 
         $validator
             ->email('email')
-            ->allowEmpty('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->allowEmpty('email');
 
         $validator
             ->allowEmpty('endereco');
@@ -100,7 +99,6 @@ class ClientesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
         return $rules;
     }
 
