@@ -76,7 +76,7 @@
 	<!-- Modal content -->
 	<div class="modal-content">
 		<span class="close" id="fecharModal">x</span>
-		<table class="listProdutosEscolher" id='tableProdutos'>
+		<table class="listEscolher" id='tableProdutos'>
 			<thead>
 				<tr>
 					<th>Ref</th>

@@ -44,6 +44,9 @@ class VendasTable extends Table
             'targetForeignKey' => 'produto_id',
             'joinTable' => 'vendas_produtos'
         ]);
+        $this->hasMany('Parcelas', [
+        		'foreignKey' => 'vendas_id'
+        ]);
     }
 
     /**
@@ -74,6 +77,10 @@ class VendasTable extends Table
        	$validator
             ->boolean('cancelada')
             ->allowEmpty('admin');
+       	
+        $validator
+        	->integer('numero_parcelas')
+        	->allowEmpty('numero_parcelas');
 
         return $validator;
     }

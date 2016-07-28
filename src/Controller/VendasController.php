@@ -156,7 +156,7 @@ class VendasController extends AppController
     		//recupera os valor enviados por 'post'
     		$parametros = [];
 	    	$parametros['produtos'] = json_decode($this->request->data['produtos']);
-	    	$parametros['total'] = $this->request->data['total'];
+	    	$parametros['subtotal'] = $this->request->data['subtotal'];
 	    	
 	    	$total = 0;
 	    	foreach ($parametros['produtos'] as $produto){
@@ -164,7 +164,7 @@ class VendasController extends AppController
 	    	}
 	    	
 	    	//se o total estiver certo continua, senão mostra erro
-	    	if($total == $parametros['total'])
+	    	if($total == $parametros['subtotal'])
 	    	{
 		    	//armazena isso na sessão para a próxima etapa
 		    	$sessao = $this->request->session();
@@ -194,19 +194,22 @@ class VendasController extends AppController
     		$parametros['cliente'] = json_decode($this->request->data['cliente']);
     		$parametros['desconto'] = (float)  $this->request->data['desconto'];
     		$parametros['formaPagamento'] = $this->request->data['formaPagamento'];
+    		$parametros['numeroParcelas'] = $this->request->data['numeroParcelas'];
     		
     		//recupera produtos da sessão
     		$sessao = $this->request->session();
     		$parametros['produtos'] = $sessao->read('venda')['produtos'];
-    		$parametros['total'] = (float) $sessao->read('venda')['total'];
+    		$parametros['subtotal'] = (float) $sessao->read('venda')['subtotal'];
     		
     		//salva no bando de dados as informações de venda
     		$vendaBD = $this->Vendas->newEntity();
-    		$vendaBD->total =  $parametros['total'];
+    		$vendaBD->subtotal =  $parametros['subtotal'];
     		$vendaBD->desconto = $parametros['desconto'];
+    		$vendaBD->total =  $parametros['subtotal']-$parametros['desconto'];
     		$vendaBD->forma_pagamento = $parametros['formaPagamento'];
     		$vendaBD->cliente_id = $parametros['cliente']->id;
     		$vendaBD->funcionarios_id = $this->Auth->user('id');
+    		$vendaBD->numero_parcelas = $parametros['numeroParcelas'];
     		$vendaBD->data = Time::now();
     		
     		//linka todos os produtos (join) =>  populariza a 3 tabela N:N e retira do estoque os produtos vendidos
@@ -221,8 +224,38 @@ class VendasController extends AppController
     			array_push(  $vendaBD->produtos, $produtoEntity);
     		}
     		
+    		//###  GERAÇÂO DE PARCELAS ####
+    		$vendaBD->parcelas = [];
+    		$parcelasTable = TableRegistry::get('Parcelas');
+    		if($vendaBD->forma_pagamento == 'Prazo'){
+    			$total = $vendaBD->total;
+    			//Para facilitar o troco retira o resto para uma parcela única
+    			$resto = fmod($total, $parametros['numeroParcelas']);
+    			
+    			$totalSemResto = $total - $resto;
+    			$valorParcela = $totalSemResto / $parametros['numeroParcelas'];
+    			
+    			//primeira parcela possui parametro especial do resto
+    			$parcelaEntity = $parcelasTable->newEntity();
+    			$parcelaEntity->num_parcela = 1;
+    			$parcelaEntity->valor_pago = 0;
+    			$parcelaEntity->data_vencimento = new Time('+30 days');
+    			$parcelaEntity->valor_total = $valorParcela+$resto;
+    			array_push(  $vendaBD->parcelas, $parcelaEntity);
+    			
+    			for ( $i = 2; $i <= $parametros['numeroParcelas']; $i++){
+	    			$parcelaEntity = $parcelasTable->newEntity();
+	    			$parcelaEntity->num_parcela = $i;
+	    			$parcelaEntity->valor_pago = 0;
+	    			$parcelaEntity->data_vencimento = new Time( '+'.($i*30).' days' );
+	    			$parcelaEntity->valor_total = $valorParcela;
+	    			array_push(  $vendaBD->parcelas, $parcelaEntity);
+    			}
+    		}
+    		//### FIM - GERAÇÂO DE PARCELAS ####
+    		
     		//Tenta salvar todos os dados
-    		if( $this->Vendas->save($vendaBD)){
+    		if( $this->Vendas->save($vendaBD, ['associated' => ['Parcelas', 'Produtos']])){
     			$this->Flash->success("Venda efetuada com sucesso");
     		}
     		else 

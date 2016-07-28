@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
+use Cake\ORM\TableRegistry;
 
 /**
  * Recebimentos Controller
@@ -37,7 +39,7 @@ class RecebimentosController extends AppController
     public function view($id = null)
     {
         $recebimento = $this->Recebimentos->get($id, [
-            'contain' => ['Funcionarios', 'Parcelas']
+            'contain' => ['Funcionarios', 'Parcelas.Vendas']
         ]);
 
         $this->set('recebimento', $recebimento);
@@ -112,4 +114,75 @@ class RecebimentosController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    
+    
+    public function realiza(){
+    	if( $this->request->is('post') ){
+    			//validação dos dados recebidos
+    		if(     !$this->request->data['idcliente'] 
+    			 || !is_numeric( $this->request->data['valor'] )
+    			 ||  $this->request->data['valor'] <= 0
+    		  )
+    		{
+    			$this->Flash->error("Não foi possével efetuar o pagamento. Erro nos dados informados.");
+    			return $this->redirect(['action'=>'realiza']);
+    		}
+    		
+    		
+    		$recebimento = $this->Recebimentos->newEntity();
+    		$recebimento->data = Time::now();
+    		$recebimento->forma_pagamento = $this->request->data['formapagamento'];
+    		$recebimento->valor = $this->request->data['valor'];
+    		$recebimento->funcionario_id = $this->Auth->user('id');
+    		
+    		
+    		
+    		$parcelas = $this->Recebimentos->Parcelas->find('all', [
+    				'contain' => ['Vendas'],
+    				'conditions' => ['Vendas.cliente_id' => $this->request->data['idcliente'],
+    						'Parcelas.quitada' => false,
+    				],
+    				'order' => ['Parcelas.data_vencimento' => 'ASC'],
+    		]);
+    		
+    			//Guarda o valor restante de cada pagemento em cada parcela
+    		$emHaver = $this->request->data['valor'];
+    			//inicia array que irá guarda as parcelas para salvar e linkar
+    		$recebimento->parcelas =[];
+    		foreach ($parcelas as $parcela){
+    			$valorDevido = $parcela->valor_total - $parcela->valor_pago;
+    			if( $valorDevido <= $emHaver ){
+    					//altera BD
+    				$parcela->quitada = true;
+    				$parcela->valor_pago = $parcela->valor_total;
+    					//retira valor pago de emHaver para proxima iteração
+    				$emHaver -= $parcela->valor_total;
+    			}
+    			else
+    			{	//O valor pago é menor que o dessa parcela ou 
+    				//o resto de iteração anterior é menor que o total dessa parcela 
+    				$parcela->valor_pago += $emHaver;
+    				$emHaver = 0;
+    			}
+				//Adiciona a Entity ao recebimento para salvar junto
+				//Quando o metodo save for chamado irar salvar alterações de parcela
+				//e 'linkar' Recebimento com Parcela na 3ª tabela no BD 
+    			array_push($recebimento->parcelas, $parcela);
+    			
+    			//se o dinheiro acabou para as iterações
+    			if($emHaver==0) break;
+    		}
+
+    		if($this->Recebimentos->save($recebimento)){
+    			$this->Flash->success("Pagamento realizado com sucesso");
+    			return $this->redirect(['action'=>'realiza']);
+    		}
+    		else
+    		{
+				$this->Flash->error("Ops. Algum problema aconteceu. Pagamento não realizado.");    			
+    		}
+    		
+    	}
+    }
+    
 }

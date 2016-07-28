@@ -19,7 +19,10 @@ class ParcelasController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Vendas']
+            'contain' => [
+            		'Vendas.Clientes' => function ($q){ return $q->select(['nome']);},
+            		'Vendas' => function ($q){ return $q->select(['id']);},
+            		]
         ];
         $parcelas = $this->paginate($this->Parcelas);
 
@@ -37,7 +40,7 @@ class ParcelasController extends AppController
     public function view($id = null)
     {
         $parcela = $this->Parcelas->get($id, [
-            'contain' => ['Vendas', 'Recebimentos']
+            'contain' => ['Recebimentos']
         ]);
 
         $this->set('parcela', $parcela);
@@ -111,5 +114,33 @@ class ParcelasController extends AppController
             $this->Flash->error(__('The parcela could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+    
+    //recupera as parcelas em aberto de um determinado cliente (id como parametro search)
+    public function parcelasPorCliente(){
+    	
+	    //solicitações REST apenas
+    	if( $this->request->query('search') && $this->request->is('json') ){
+    		
+    		$this->paginate = [ 
+    				'fields' => ['Vendas.data', 'Vendas.numero_parcelas','Parcelas.data_vencimento',
+    							 'Parcelas.valor_total', 'Parcelas.valor_pago', 'Parcelas.num_parcela'],
+    				'contain' => ['Vendas'],
+    				'conditions' => ['Vendas.cliente_id' => $this->request->query('search'),
+    								 'Parcelas.quitada' => false,
+    								],
+    				'order' => ['Parcelas.data_vencimento' => 'ASC'],
+    		];
+    		
+    		$parcelas = $this->paginate($this->Parcelas);
+    		
+    		$this->set(compact('parcelas'));
+    		$this->set('_serialize', ['parcelas']);
+    		
+    		return;
+    	}
+    	
+    	$this->Flash->error('Esse método serve apenas para execução interna');
+    	return $this->redirect(['controller'=> 'recebimentos','action'=>'realiza']);
     }
 }

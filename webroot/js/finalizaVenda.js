@@ -2,7 +2,7 @@
 //clientes no formato json da resposta da requisição ajax
 var clientesRespostasAJAX =[]
 //recupera o valor total da venda
-var totalVenda = dinheiroParaNumero( $('#valorTotal').text() );
+var subtotalVenda = dinheiroParaNumero( $('#valorTotal').text() );
 
 //VARIAVEIS QUE SERÂO ENVIADAS PARA SERVIDOR
 //aramazena o cliente da venda no formato json assim como recebido do servidor
@@ -11,10 +11,26 @@ var clienteSelecionado = null;
 var descontoVenda = 0;
 //armazena a forma de pagamento efetuada
 var formaPagamento = $( "#formaPagamento" ).val();
+//armazena o número de parcelas se for a prazo, senão 0
+var numero_parcelas = 0;
 
-$( "#formaPagamento" ).change( function () {
+$("#formaPagamento" ).change( function () {
 	formaPagamento = $( "#formaPagamento" ).val();
+	
+	if( $('#formaPagamento').val() == 'Prazo' ){
+		$('#parcelas').show();
+		numero_parcelas = 1;
+	} 
+	else{
+		$('#parcelas').hide();
+		numero_parcelas = 0;
+	}
 });
+
+$("#numeroparcelas").change(function(){
+	numero_parcelas = $("#numeroparcelas").val();
+});
+
 
 $('#pesquisaClienteForm').on('submit', function(e) {
 	pesquisaAjax();
@@ -35,7 +51,7 @@ $("#removerCliente").on('click', function(){
 
 $('#valorDesconto').change( function(){
 	descontoVenda = parseFloat($(this).val());
-	var valorAtualizado = totalVenda - descontoVenda;
+	var valorAtualizado = subtotalVenda - descontoVenda;
 	$('#valorTotal').text( numeroParaDinheiro(valorAtualizado) );
 })
 
@@ -105,12 +121,17 @@ function selecionaOpcao() {
 $("#concluiVenda").on("click", concluiVenda)
 
 function concluiVenda() {
-
+	//se é a prazo e não tem cliente selecionado
+	if(numero_parcelas && (!clienteSelecionado)){
+		alert("Selecione um cliente.");
+		return;
+	}
 	var dadosAJAX = new Object();
 	dadosAJAX.cliente = JSON.stringify(clienteSelecionado);
 	dadosAJAX.desconto = descontoVenda;
 	dadosAJAX.formaPagamento = formaPagamento;
-	
+	dadosAJAX.numeroParcelas =  numero_parcelas;
+
 	$.redirect("/vendas/conclui",dadosAJAX);
 
 }
@@ -134,3 +155,13 @@ $('#fecharModal').on('click', function fecharModal(){
 //	// fecha a janela com opções
 	$('#myModal').hide();
 });
+
+$('#formaPagamento').change(function (){
+		if( $('#formaPagamento').val() == 'Prazo' ){
+			$('#parcelas').show();
+		} 
+		else{
+			$('#parcelas').hide();
+		}
+	}
+);

@@ -54,10 +54,6 @@ class VendasProdutosTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->integer('quantidade')
-            ->requirePresence('quantidade', 'create')
-            ->notEmpty('quantidade');
 
         return $validator;
     }

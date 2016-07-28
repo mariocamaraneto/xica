@@ -69,9 +69,6 @@
 							] );
 							?>
 		    </div>
-		<?php echo $this->Form->end();?>
-	</div>
-	
 	
 	
 	<div class='row' style="margin-top: 1em;">
@@ -81,18 +78,36 @@
 		<div class='large-3 medium-3 columns end'>
 			<select id="formaPagamento">
 			  <option>Dinheiro</option>
+			  <option>Prazo</option>
 			  <option>Cartão</option>
 			  <option>Cheque</option>
 			</select>
 		</div>
-	</div> 
+	</div>
+	
+	<div class='row' id="parcelas">
+		<div class='large-3 large-offset-3 columns'>
+			Número de parcelas
+		</div>
+		<div class='large-2 large-offset-1 columns end'>
+				<?php echo $this->Form->input ( 'numeroparcelas', [ 
+								'type' => 'number',
+								'label' => '',
+								'min' =>'1',
+								'value' => '1',
+						] );?>
+		</div>
+	</div>
 			
+		<?php echo $this->Form->end();?>
+	</div>
+	
 
 	<div class='row' style="margin-top: 4em;">
 		<div class='large-4 large-offset-1 medium-4 medium-offset-2 end columns'>
 			<ul class="pricing-table">
 				<li class="title">Total da Venda</li>
-				<li class="price" id="valorTotal"><?php echo $this->Number->currency($total)?></li>
+				<li class="price" id="valorTotal"><?php echo $this->Number->currency($subtotal)?></li>
 			</ul>
 		</div>
 		<div class='large-3 large-offset-2 medium-4 columns'>

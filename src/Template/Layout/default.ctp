@@ -107,6 +107,12 @@ $sysDescription = 'Sistema Brechó da Xica';
 						<li><a href="/pagamentos">Listar</a></li>
 					</ul>
 				</li>
+				<li class="has-dropdown"><a href="/recebimentos/realiza">Recebimento</a>
+					<ul class="dropdown">
+						<li><a href="/recebimentos/realiza">Realiza</a></li>
+						<li><a href="/recebimentos">Listar</a></li>
+					</ul>
+				</li>
 
 			</ul>
 

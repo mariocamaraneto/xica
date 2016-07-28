@@ -134,7 +134,8 @@ function finalizaVenda() {
 
 	var dadosAJAX = new Object();
 	dadosAJAX.produtos = JSON.stringify(produtosSelecionados);
-	dadosAJAX.total = total;
+	//no servidor é tratado como subtotal, pois não está aplicado o desconto
+	dadosAJAX.subtotal = total;
 	
 	$.redirect("/vendas/finaliza",dadosAJAX);
 

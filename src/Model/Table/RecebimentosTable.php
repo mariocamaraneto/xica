@@ -31,7 +31,7 @@ class RecebimentosTable extends Table
         $this->primaryKey('id');
 
         $this->belongsTo('Funcionarios', [
-            'foreignKey' => 'funcionarios_id',
+            'foreignKey' => 'funcionario_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsToMany('Parcelas', [
@@ -76,7 +76,7 @@ class RecebimentosTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['funcionarios_id'], 'Funcionarios'));
+        $rules->add($rules->existsIn(['funcionario_id'], 'Funcionarios'));
         return $rules;
     }
 }

@@ -46,13 +46,19 @@
 	        		<!--<?php echo $this->Form->input('fornecedor_id', ['options' => $fornecedores]); ?> -->
 				</div>
 				<div class="large-6 columns">
-					<label style='margin-right: 10px; margin-bottom: 8px;'>Em estoque:
-					</label> <label for="em-estoque-1"
-						style='display: inline; margin-right: 7px;'> <input
-						name="em_estoque" value="1" id="em-estoque-1" checked="checked"
-						type="radio">Sim
-					</label> <label for="em-estoque-0" style='display: inline'><input
-						name="em_estoque" value="0" id="em-estoque-0" type="radio">Não</label>
+					<label style='margin-right: 10px; margin-bottom: 8px;'>
+						Em estoque:
+					</label> 
+					<label for="em-estoque-1" style='display: inline; margin-right: 7px;'> 
+						<input name="em_estoque" value="1" id="em-estoque-1" type="radio" 
+								<?php echo ($produto->em_estoque) ? "checked":''; ?>>
+							Sim
+					</label> 
+					<label for="em-estoque-0" style='display: inline'>
+						<input name="em_estoque" value="0" id="em-estoque-0" type="radio"
+							<?php echo ($produto->em_estoque) ? "":'checked'; ?>>
+							Não
+					</label>
 				</div>
 			</div>
 			<div class="row">

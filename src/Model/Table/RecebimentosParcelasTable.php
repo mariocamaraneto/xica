@@ -27,15 +27,15 @@ class RecebimentosParcelasTable extends Table
         parent::initialize($config);
 
         $this->table('recebimentos_parcelas');
-        $this->displayField('parcelas_id');
-        $this->primaryKey(['parcelas_id', 'recebimentos_id']);
+        $this->displayField('parcela_id');
+        $this->primaryKey(['parcela_id', 'recebimento_id']);
 
         $this->belongsTo('Parcelas', [
-            'foreignKey' => 'parcelas_id',
+            'foreignKey' => 'parcela_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Recebimentos', [
-            'foreignKey' => 'recebimentos_id',
+            'foreignKey' => 'recebimento_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -49,8 +49,8 @@ class RecebimentosParcelasTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['parcelas_id'], 'Parcelas'));
-        $rules->add($rules->existsIn(['recebimentos_id'], 'Recebimentos'));
+        $rules->add($rules->existsIn(['parcela_id'], 'Parcelas'));
+        $rules->add($rules->existsIn(['recebimento_id'], 'Recebimentos'));
         return $rules;
     }
 }

@@ -37,7 +37,7 @@ class ParcelasTable extends Table
         $this->belongsToMany('Recebimentos', [
             'foreignKey' => 'parcela_id',
             'targetForeignKey' => 'recebimento_id',
-            'joinTable' => 'recebimentos_parcelas'
+            'joinTable' => 'recebimentos_parcelas',
         ]);
     }
 
@@ -68,6 +68,10 @@ class ParcelasTable extends Table
         $validator
             ->decimal('valor_total')
             ->allowEmpty('valor_total');
+        
+        $validator
+        	->boolean('quitada')
+        	->allowEmpty('quitada');
 
         return $validator;
     }
