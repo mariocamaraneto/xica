@@ -58,8 +58,7 @@ $sysDescription = 'Sistema Brechó da Xica';
 
 		<ul class="title-area">
 			<li class="name bordaLogo">
-				<h1 id="nomeLogo">
-					Brechó da XICA</h1>
+				<h1 id="nomeLogo"><a href='/pages/home'>Brechó da XICA</a></h1>
 			</li>
 			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -112,6 +111,8 @@ $sysDescription = 'Sistema Brechó da Xica';
 						<li><a href="/recebimentos/realiza">Realiza</a></li>
 						<li><a href="/recebimentos">Listar</a></li>
 					</ul>
+				</li>
+				<li><a href="/pages/relatorios">Relatórios</a>
 				</li>
 
 			</ul>

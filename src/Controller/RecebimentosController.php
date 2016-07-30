@@ -124,7 +124,7 @@ class RecebimentosController extends AppController
     			 ||  $this->request->data['valor'] <= 0
     		  )
     		{
-    			$this->Flash->error("Não foi possével efetuar o pagamento. Erro nos dados informados.");
+    			$this->Flash->error("Não foi possível efetuar o pagamento. Erro nos dados informados.");
     			return $this->redirect(['action'=>'realiza']);
     		}
     		

@@ -122,7 +122,7 @@ class FuncionariosController extends AppController
     				$this->Auth->setUser($funcionario);
     				$url = $this->Auth->redirectUrl();
     				if($url =='/'){
-    					return $this->redirect(['controller' => 'Vendas', 'action' => 'realiza']);
+    					return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
     				}
     				return $this->redirect( $url );
     			} 
