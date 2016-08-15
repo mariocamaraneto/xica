@@ -41,7 +41,7 @@ class PagamentosController extends AppController
     public function view($id = null)
     {
         $pagamento = $this->Pagamentos->get($id, [
-            'contain' => ['Fornecedores', 'Funcionarios', 'VendasProdutos']
+            'contain' => ['Fornecedores', 'Funcionarios', 'VendasProdutos.Produtos']
         ]);
 
         $this->set('pagamento', $pagamento);
@@ -241,5 +241,110 @@ class PagamentosController extends AppController
     		$this->set('pagamento', $pagamento );
     		$this->set('_serialize', ['pagamento']);
     	}
+    }
+    
+    function relatorios(){
+	    if($this->request->is('post'))
+	    {
+	    	$parametros = $this->request->data;
+	    	
+	    	if( $parametros['tipo'] == 'efetuados')
+	    	{
+		    	//inicia a construção do sql com inner join das tabelas
+		    	$query = $this->Pagamentos->find()->contain(
+		    			['VendasProdutos.Produtos', 'Funcionarios', 'Fornecedores']);
+		    
+		    	//ajusta a data de início para o relatório de pagamentos 
+		    	if ($parametros['diaInicio']['day'] != '')
+		    	{
+		    		$data = new Time();
+		    		$data->day($parametros['diaInicio']['day']);
+		    		$data->month($parametros['mesInicio']['month']);
+		    		$data->year($parametros['anoInicio']['year']);
+		    
+	    			$query->where(['Pagamentos.data >=' => $data->i18nFormat('yyyy-MM-dd')]);
+		    	}
+		    	
+		    	//ajusta a data de início para o relatório de pagamentos
+		    	if ($parametros['diaFinal']['day'] != '')
+		    	{
+		    		$data = new Time();
+		    		$data->day($parametros['diaFinal']['day']);
+		    		$data->month($parametros['mesFinal']['month']);
+		    		$data->year($parametros['anoFinal']['year']);
+		    		 
+		    		//data menores que atual irá pesquisar pagamentos já realizados
+		    		if( $data < Time::now() )
+		    		{
+		    			$query->where(['Pagamentos.data <=' => $data->i18nFormat('yyyy-MM-dd')]);
+		    		}
+		    	}
+
+		    	//se for um pdf envia todos os dados do BD
+		    	//caso contrario cria visualização limitada na tela com paginate
+		    	if( $this->request->params['_ext'] == 'pdf' ){
+		    		$pagamentos = $query->all();
+		    	}
+		    	else 
+		    	{	
+		    		$pagamentos = $this->paginate($query);
+		    	}
+		    			    	 
+		    	//cria a visualização passando os parametros para a view
+		    	$this->set(compact('pagamentos'));
+		    	$this->set('_serialize', ['pagamentos']);
+		    	 
+		    	$this->set(compact('parametros'));
+		    	$this->render('index');
+		    	
+	    	}//final do if efetuados
+	    	elseif( $parametros['tipo'] == 'futuros')
+	    	{
+	    		if($parametros['diaInicio']['day'] == '' 
+	    				|| $parametros['mesInicio']['month'] == ''
+	    				|| $parametros['anoInicio']['year'] == ''
+	    				)
+	    		{
+	    			$this->Flash->error('adicione uma data inicial');
+	    			return $this->redirect(['action'=>'relatorios']);
+	    		}
+	    		
+    			//procura pelos produtos vendidos a 1 mes atrás
+	    		$data = new Time();
+		    	$data->day($parametros['diaInicio']['day']);
+		    	$data->month($parametros['mesInicio']['month']);
+		    	$data->year($parametros['anoInicio']['year']);
+	    		$data->modify('-30 days');
+	    		
+	    		$produtosTable = TableRegistry::get("Produtos");
+	    		$query = $produtosTable->find();
+    			$query->select([ 'nome', 'marca', 'custo_bruto',
+    					'totalPorFornecedor'=>'sum(Produtos.preco)',
+    					'fornecedor_id' => 'Produtos.fornecedor_id',
+    					'fornecedor_nome'=>'Fornecedores.nome',
+    					
+    			]);
+    			$query->contain(['Fornecedores']);
+    			$query->group('fornecedor_id');
+	    		
+	    		//faz inner join com a tabela de vendas com as vendas com datas anteriores a 'tempo'
+	    		$query->matching('Vendas',function ($q) use ($data){
+	    			return $q->where(  ['Vendas.data <' => $data->i18nFormat('yyyy-MM-dd'),
+	    					'Vendas.cancelada' => '0']
+	    					);
+	    		});
+    			//filtra para aquelas que não foram pagas ainda
+    			$query->where(['VendasProdutos.pagamento_id IS'=>null]);
+    			
+    			$pagamentos = $query->all();
+    			
+				if( ! $this->request->params['_ext'] == 'pdf' ){
+    				$this->RequestHandler->renderAs($this, 'pdf');
+				}
+    			$this->set(compact('pagamentos'));
+    			$this->render('futuro');
+	    	}
+	    	
+	    }
     }
 }

@@ -207,7 +207,7 @@ class VendasController extends AppController
     		$vendaBD->desconto = $parametros['desconto'];
     		$vendaBD->total =  $parametros['subtotal']-$parametros['desconto'];
     		$vendaBD->forma_pagamento = $parametros['formaPagamento'];
-    		$vendaBD->cliente_id = $parametros['cliente']->id;
+    		$vendaBD->cliente_id = $parametros['cliente']['id'];
     		$vendaBD->funcionarios_id = $this->Auth->user('id');
     		$vendaBD->numero_parcelas = $parametros['numeroParcelas'];
     		$vendaBD->data = Time::now();
@@ -297,6 +297,71 @@ class VendasController extends AppController
     		$this->redirect(['action'=>'realiza']);
     	}
     	
+    }
+    
+    
+    /**
+     * Função responsavel por buscar as informações no banco com as propriedades 
+     * especificadas pelo usuário na tela de relatorio de vendas.
+     * Ela so executa a função quando receber um 'post' do formulario com as 
+     * especificações do relatório.
+     * Todos os relacionamneto são buscados no banco de dados para que a interface (view) 
+     * possa decidir quais atributos serão mostrados com base nos parametros recebidos
+     * de exibição.
+     */
+    public function relatorios()
+    {
+    	if($this->request->is('post'))
+    	{
+    		$parametros = $this->request->data;
+    		//inicia a construção do sql com inner join das tabelas 
+    		$query = $this->Vendas->find()->contain(['Produtos', 'Funcionarios', 'Clientes']);
+    		
+    		//relatório de todas vendas realiazadas nos X (intervaloDias) últimos dias 
+    		if($parametros['intervaloDias'])
+    		{
+    			$diasFormatado = $parametros['intervaloDias'].' days ago';
+    			$data = new Time($diasFormatado);
+    			$query->where(['Vendas.data >' => $data->i18nFormat('yyyy-MM-dd')]);
+    		} 
+    		//relatório de vendas em um dia exclusivo
+    		elseif ($parametros['dia']['day'] != '')
+    		{
+    			$data = new Time();
+    			$data->day($parametros['dia']['day']);
+    			$data->month($parametros['mes']['month']);
+    			$data->year($parametros['ano']['year']);
+    			 
+    			$query->where(['Vendas.data' => $data->i18nFormat('yyyy-MM-dd')]);
+    		}
+    		//relatório de vendas em um mes completo
+    		elseif($parametros['mes']['month'] != '')
+    		{
+    			$data = new Time();
+    			$data->month($parametros['mes']['month']);
+    			$data->year($parametros['ano']['year']);
+    			
+    			$data->day('01');
+				$query->where(['Vendas.data >=' => $data->i18nFormat('yyyy-MM-dd')]);
+				
+				$data->day('31');
+				$query->where(['Vendas.data <=' => $data->i18nFormat('yyyy-MM-dd')]);
+    		}
+    		
+    		//seleciona produtos com um tipo especifico de pagamento [dinheiro, prazo, cartao, cheque]
+    		if($parametros['formaPagamento'] != 'todas'){
+    			$query->where(['Vendas.forma_pagamento' => $parametros['formaPagamento']]);
+    		}
+    		
+    		
+    		$vendas = $query->all();
+
+    		$this->set(compact('vendas'));
+    		$this->set('_serialize', ['vendas']);
+    		
+    		$this->set(compact('parametros'));
+    		$this->render('index');
+    	}
     }
     
 }

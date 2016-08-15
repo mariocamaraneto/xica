@@ -156,7 +156,7 @@ class RecebimentosController extends AppController
     				$parcela->quitada = true;
     				$parcela->valor_pago = $parcela->valor_total;
     					//retira valor pago de emHaver para proxima iteração
-    				$emHaver -= $parcela->valor_total;
+    				$emHaver -= $valorDevido;
     			}
     			else
     			{	//O valor pago é menor que o dessa parcela ou 

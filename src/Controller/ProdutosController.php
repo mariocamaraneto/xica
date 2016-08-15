@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Produtos Controller
@@ -111,6 +112,14 @@ class ProdutosController extends AppController
         }
         $fornecedores = $this->Produtos->Fornecedores->find('all')->select(['id','nome']);
         $vendas = $this->Produtos->Vendas->find('list', ['limit' => 200]);
+        
+        $ref = $this->Produtos->find('all')->select(['referencia'])->max('referencia')->referencia;
+        if($ref == ''){
+        	$ref = 19999;
+        }
+        $ref += 1;
+        $produto->referencia = $ref;
+        
         $this->set(compact('produto', 'fornecedores', 'vendas'));
         $this->set('_serialize', ['produto']);
     }
@@ -159,6 +168,41 @@ class ProdutosController extends AppController
             $this->Flash->error(__('Esse produto não pode ser deletado.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+    
+    public function relatorios() {
+    	
+    	if( $this->request->is('post') )
+    	{
+    		$query = $this->Produtos->find()->distinct();
+    		$query = $query->select(['referencia', 'nome', 'preco', 'em_estoque', 'id']);
+    		if( $this->request->data['tipo'] == 'emEstoque')
+    		{
+    			$query = $query->where(['em_estoque' => '1']);
+    		}
+    		elseif ($this->request->data['tipo'] == 'foraEstoque')
+    		{
+    			$query = $query->where(['em_estoque' => '0']);
+    		}
+
+    		if($this->request->data['intervaloDiasVendidos'])
+    		{
+    			$diasFormatado = $this->request->data['intervaloDiasVendidos'].' days ago';
+    			$data = new Time($diasFormatado);
+    			$query = $query->matching('Vendas', function ($query) use ($data) {
+    				return $query->where(['Vendas.data >' => $data->i18nFormat('yyyy-MM-dd')]);
+    			});
+    		}
+    		
+    		$query->order(['Vendas.id' => 'DESC']);
+    		$produtos = $this->paginate($query);
+    		 
+    		//retorna todos os valores para a View
+    		$this->set(compact('produtos'));
+    		$this->set('_serialize', ['produtos']);
+    		//altera a view padrão
+			$this->render('index');    		
+    	}
     }
 
 }

@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<th><?= __('Funcionário') ?></th>
-			<td><?= $pagamento->has('funcionario') ? $this->Html->link($pagamento->funcionario->nome, ['controller' => 'Funcionarios', 'action' => 'view', $pagamento->funcionario->id]) : '' ?></td>
+			<td><?= $pagamento->has('funcionario') ? $this->Html->link($pagamento->funcionario->nome_login, ['controller' => 'Funcionarios', 'action' => 'view', $pagamento->funcionario->id]) : '' ?></td>
 		</tr>
 	</table>
 	<div class="related">
@@ -35,12 +35,12 @@
         <?php if (!empty($pagamento->vendas_produtos)): ?>
         <table cellpadding="0" cellspacing="0">
 			<tr>
-				<th><?= __('Produto Id') ?></th>
+				<th> Produtos Pagos</th>
 				<th class="actions"><?= __('Actions') ?></th>
 			</tr>
             <?php foreach ($pagamento->vendas_produtos as $vendasProdutos): ?>
             <tr>
-				<td><?= h($vendasProdutos->produto_id) ?></td>
+				<td><?= h($vendasProdutos->produto['nome']) ?></td>
 				<td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'VendasProdutos', 'action' => 'view', $vendasProdutos->venda_id])?>
                     /

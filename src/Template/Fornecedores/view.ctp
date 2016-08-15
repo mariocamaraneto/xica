@@ -62,10 +62,11 @@
             	<td><?= h($produtos->referencia) ?></td>
                 <td><?= h($produtos->nome) ?></td>
                 <td><?= h($produtos->marca) ?></td>
-                <td><?= h($produtos->custo_bruto) ?></td>
-                <td><?= ($produtos->em_estoque) ? 'Sim':'Não;'?></td>
+                <td><?= $this->Number->currency($produtos->custo_bruto) ?></td>
+                <td><?= ($produtos->em_estoque) ? 'Sim':'Não'?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Produtos', 'action' => 'view', $produtos->id]) ?>
+                    /
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Produtos', 'action' => 'edit', $produtos->id]) ?>
                 </td>
             </tr>

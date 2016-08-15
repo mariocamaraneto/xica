@@ -6,12 +6,6 @@
 </div>
 
 <div class="vendas view large-8 large-offset-2 medium-8 columns">
-    <div class='row'>
-    	<div class="large-2 large-offset-10 columns end">
-    		 <?= $this->Html->link(__('Cancelar'), ['action' => 'cancela', $venda->id], 
-    		 		['class'=>'button round small','confirm' => 'Deseja realmente cancelar esta venda?']) ?>
-    	</div>
-    </div>
     <table class="vertical-table">
         <tr>
             <th><?= __('Data') ?></th>
@@ -41,6 +35,12 @@
             <td><?= $venda->cancelada ? 'Cancelada' : 'Realizada' ?></td>
         </tr>
     </table>
+    <div class='row'>
+    	<div class="large-2 large-offset-10 columns end">
+    		 <?= $this->Html->link('Cancelar', ['action' => 'cancela', $venda->id], 
+    		 		['class'=>'button round alert small','confirm' => 'Deseja realmente cancelar esta venda?']) ?>
+    	</div>
+    </div>
     <div class="related">
         <h4><?= __('Related Produtos') ?></h4>
         <?php if (!empty($venda->produtos)): ?>
