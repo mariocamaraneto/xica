@@ -111,7 +111,7 @@ class ProdutosTable extends Table
     	
     	//cada tipo de campo possui um peso, sendo assim, é feito um calculo 
     	//para ranque dizendo quais são os campos que possuem maior peso de matching
-    	$pesos = ["nome" => 4, "marca" => 2, "descricao" => 1];
+    	$pesos = ["referencia"=>5, "nome" => 4, "marca" => 2, "descricao" => 1];
     	$palavras = explode(" ", trim($options['pesquisa']));
     	$palavras = array_diff($palavras, ['']);
     	
