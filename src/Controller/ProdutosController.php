@@ -174,7 +174,8 @@ class ProdutosController extends AppController
     	
     	if( $this->request->is('post') )
     	{
-    		$query = $this->Produtos->find()->distinct();
+     		$query = $this->Produtos->find()->distinct(['Produtos.id']);
+
     		$query = $query->select(['referencia', 'nome', 'preco', 'em_estoque', 'id']);
     		if( $this->request->data['tipo'] == 'emEstoque')
     		{
@@ -194,11 +195,21 @@ class ProdutosController extends AppController
     			});
     		}
     		
-    		$query->order(['Vendas.id' => 'DESC']);
+    		if($this->request->data['ordenacao'] == 'referencia')
+    		{
+    			$query->order(['Produtos.referencia'=>"ASC"]);
+    		}
+    		else
+    		{
+    			$query->order(['Produtos.nome'=>"ASC"]);
+    		}
+    		
     		$produtos = $this->paginate($query);
     		 
     		//retorna todos os valores para a View
     		$this->set(compact('produtos'));
+    		
+    		
     		$this->set('_serialize', ['produtos']);
     		//altera a view padrão
 			$this->render('index');    		
