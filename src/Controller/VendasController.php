@@ -207,7 +207,7 @@ class VendasController extends AppController
     		$vendaBD->desconto = $parametros['desconto'];
     		$vendaBD->total =  $parametros['subtotal']-$parametros['desconto'];
     		$vendaBD->forma_pagamento = $parametros['formaPagamento'];
-    		$vendaBD->cliente_id = $parametros['cliente']['id'];
+    		$vendaBD->cliente_id = $parametros['cliente']->id;
     		$vendaBD->funcionarios_id = $this->Auth->user('id');
     		$vendaBD->numero_parcelas = $parametros['numeroParcelas'];
     		$vendaBD->data = Time::now();
