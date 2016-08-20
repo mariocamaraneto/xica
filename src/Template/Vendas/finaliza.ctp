@@ -60,10 +60,6 @@
 			<!-- Pesquisa por nome do cliente -->
 			    <?php
 							echo $this->Form->input ( 'valorDesconto', [ 
-									'type' => 'number',
-									'step' => '0.01',
-									'min' => "0",
-									'value' => '0.00',
 									'label' => false,
 									'id' => 'valorDesconto', 
 							] );
@@ -142,5 +138,6 @@
 <!-- FIM - Painel suspenso que mostra os produtos resultados da pesquisa  -->
 
 
-<?php echo $this->Html->script('finalizaVenda'); ?>
+<?php echo $this->Html->script('jquery.maskMoney.min.js'); ?>
 <?php echo $this->Html->script('jquery.redirect'); ?>
+<?php echo $this->Html->script('finalizaVenda'); ?>

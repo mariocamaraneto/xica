@@ -47,13 +47,19 @@ $("#removerCliente").on('click', function(){
 	//Muda nome no input
 	$("#palavraPesquisaCliente").val('');
 	$(this).hide();
-})
+});
 
-$('#valorDesconto').change( function(){
+$('#valorDesconto').maskMoney('mask', 0.00);
+
+$('#valorDesconto').on('keyup', function() {
+	
+	$('#valorDesconto').maskMoney();
+	console.debug($('#valorDesconto').val());
 	descontoVenda = parseFloat($(this).val());
 	var valorAtualizado = subtotalVenda - descontoVenda;
 	$('#valorTotal').text( numeroParaDinheiro(valorAtualizado) );
-})
+});
+
 
 function pesquisaAjax() {
 	var palavraPesquisa = $('#palavraPesquisaCliente').val();
