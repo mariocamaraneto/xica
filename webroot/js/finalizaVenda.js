@@ -14,6 +14,8 @@ var formaPagamento = $( "#formaPagamento" ).val();
 //armazena o número de parcelas se for a prazo, senão 0
 var numero_parcelas = 0;
 
+$('#valorDesconto').maskMoney('mask', 0.00);
+
 $("#formaPagamento" ).change( function () {
 	formaPagamento = $( "#formaPagamento" ).val();
 	
@@ -49,12 +51,9 @@ $("#removerCliente").on('click', function(){
 	$(this).hide();
 });
 
-$('#valorDesconto').maskMoney('mask', 0.00);
 
 $('#valorDesconto').on('keyup', function() {
-	
 	$('#valorDesconto').maskMoney();
-	console.debug($('#valorDesconto').val());
 	descontoVenda = parseFloat($(this).val());
 	var valorAtualizado = subtotalVenda - descontoVenda;
 	$('#valorTotal').text( numeroParaDinheiro(valorAtualizado) );
@@ -128,6 +127,10 @@ $("#concluiVenda").on("click", concluiVenda)
 
 function concluiVenda() {
 	//se é a prazo e não tem cliente selecionado
+	if(subtotalVenda <= descontoVenda){
+		alert("Desconto maior que o subtotal da venda.");
+		return;
+	}
 	if(numero_parcelas && (!clienteSelecionado)){
 		alert("Selecione um cliente.");
 		return;
