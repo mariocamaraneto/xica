@@ -23,7 +23,12 @@ class ClientesController extends AppController
     	{
     		//Condições de paginate. Ler mais em: http://www.tayron.com.br/blog/121/criando-um-formulario-de-pesquisa-com-cakephp3
     		$this->paginate = [ 
-    				'conditions' => [ 'Clientes.nome LIKE' => '%'.$this->request->query('search').'%'] 
+    				'conditions' => [ 'or'=> [ 
+    						'Clientes.nome LIKE' => '%'.$this->request->query('search').'%',
+    						'Clientes.num_sapato' => $this->request->query('search'),
+    						'Clientes.num_roupa' => $this->request->query('search'),
+    					]
+    				] 
 		    		];
     		$clientes = $this->paginate($this->Clientes);
     	}
