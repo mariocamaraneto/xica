@@ -30,7 +30,16 @@ class PagamentosController extends AppController
         $this->set(compact('pagamentos'));
         $this->set('_serialize', ['pagamentos']);
     }
+    
+    public function pdfporid($id = null)
+    {
+        $pagamento = $this->Pagamentos->get($id, [
+            'contain' => ['Fornecedores', 'Funcionarios', 'VendasProdutos.Produtos']
+        ]);
 
+        $this->set('pagamento', $pagamento);
+        $this->set('_serialize', ['pagamento']);
+    }
     /**
      * View method
      *

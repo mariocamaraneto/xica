@@ -7,7 +7,14 @@
 
 <div
 	class="produtos view large-8 large-offset-2 medium-10 medium-offset-1 columns">
-	<h3><?= h($pagamento->fornecedor->nome) ?></h3>
+    <div class='row'>
+		<div class="large-7 columns">
+			<h3><?= h($pagamento->fornecedor->nome) ?></h3>
+    	</div>
+    	<div class="large-3 large-offset-2 columns end">
+    		 <?= $this->Html->link(__('Gerar PDF'), ['action' => 'pdfporid', $pagamento->id, '.pdf'], ['class'=>'button round small', 'target' => '_blank']) ?>
+    	</div>
+    </div>
 	<table class="vertical-table">
 		<tr>
 			<th><?= __('Data') ?></th>
@@ -15,7 +22,7 @@
 		</tr>
 		<tr>
 			<th><?= __('Valor') ?></th>
-			<td><?= h($pagamento->valor) ?></td>
+			<td><?= $this->Number->currency($pagamento->valor) ?></td>
 		</tr>
 		<tr>
 			<th><?= __('Forma de Pagamento') ?></th>
@@ -31,20 +38,22 @@
 		</tr>
 	</table>
 	<div class="related">
-		<h4><?= __('Related Vendas Produtos') ?></h4>
+		<h4>Produtos Pagos</h4>
         <?php if (!empty($pagamento->vendas_produtos)): ?>
         <table cellpadding="0" cellspacing="0">
 			<tr>
-				<th> Produtos Pagos</th>
+				<th>Produtos</th>
+				<th>Valor a ser pago </th>
 				<th class="actions"><?= __('Actions') ?></th>
 			</tr>
             <?php foreach ($pagamento->vendas_produtos as $vendasProdutos): ?>
             <tr>
 				<td><?= h($vendasProdutos->produto['nome']) ?></td>
+				<td><?= $this->Number->currency($vendasProdutos->produto['custo_bruto']) ?></td>
 				<td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'VendasProdutos', 'action' => 'view', $vendasProdutos->venda_id])?>
+                    <?= $this->Html->link(__('View'), ['controller' => 'Produtos', 'action' => 'view', $vendasProdutos->produto_id])?>
                     /
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'VendasProdutos', 'action' => 'edit', $vendasProdutos->venda_id])?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => '	Produtos', 'action' => 'edit', $vendasProdutos->produto_id])?>
                 </td>
 			</tr>
             <?php endforeach; ?>
