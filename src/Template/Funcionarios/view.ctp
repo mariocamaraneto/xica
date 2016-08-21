@@ -10,7 +10,10 @@
 		<div class="large-7 columns">
     		<h3><?= $funcionario->nome_completo ?></h3>
     	</div>
-    	<div class="large-2 large-offset-3 columns end">
+    	<div class="large-3 columns">
+    		<?= $this->Html->link('Ver Vendas', ['action' => 'vendasFuncionario', $funcionario->id], ['class'=>'button round small']) ?>
+    	</div>
+    	<div class="large-2 columns">
     		<?= $this->Html->link(__('Editar'), ['action' => 'edit', $funcionario->id], ['class'=>'button round small']) ?>
     	</div>
     </div>

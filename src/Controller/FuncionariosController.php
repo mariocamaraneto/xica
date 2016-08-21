@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
 
 /**
  * Funcionarios Controller
@@ -142,8 +144,37 @@ class FuncionariosController extends AppController
     public function logout()
     {
     	$this->Flash->success('Você saiu do sistema');
-    	debug($this->$funcionario);
     	return $this->redirect($this->Auth->logout());
     }
 
+    public function vendasFuncionario($id = null)
+    {
+        $produtosTable = TableRegistry::get('Vendas');
+        
+        $query = $produtosTable->find('all');
+        $query = $query->contain(['Clientes']);
+        $query = $query->where(['Vendas.funcionarios_id'=>$id]);
+        
+        $mes = '';
+        $ano = '';
+        
+        if( $this->request->query('mes') )
+        {
+	        $mes = $this->request->query('mes');
+        	$query = $query->where(['MONTH(data)'=>$mes]);
+        	$now = Time::now(); //configura o ano padrão corrente
+        	$ano = $now->year;
+        	$query = $query->where(['YEAR(data)'=>$ano]);
+        }
+        if( $this->request->query('ano') )
+        {
+	        $ano = $this->request->query('ano');
+	        $query = $query->where(['YEAR(data)'=>$ano]);
+        }
+        
+        $vendas = $this->paginate($query);
+        
+        $this->set(compact('vendas', 'ano', 'mes'));
+        $this->set('_serialize', ['vendas']);
+    }
 }
