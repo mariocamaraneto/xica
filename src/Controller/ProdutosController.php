@@ -113,8 +113,8 @@ class ProdutosController extends AppController
         $fornecedores = $this->Produtos->Fornecedores->find('all')->select(['id','nome']);
         $vendas = $this->Produtos->Vendas->find('list', ['limit' => 200]);
         
-        $ref = $this->Produtos->find('all')->select(['referencia'])->max('referencia')->referencia;
-        if($ref < 20000){
+        $ref = $this->Produtos->find('all')->select(['referencia'])->max('referencia');
+        if( is_null($ref) || $ref->referencia<20000 ){
         	$ref = 19999;
         }
         $ref += 1;
