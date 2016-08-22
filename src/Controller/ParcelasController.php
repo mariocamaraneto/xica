@@ -128,6 +128,7 @@ class ParcelasController extends AppController
     				'contain' => ['Vendas'],
     				'conditions' => ['Vendas.cliente_id' => $this->request->query('search'),
     								 'Parcelas.quitada' => false,
+    								 'Vendas.cancelada' => false,
     								],
     				'order' => ['Parcelas.data_vencimento' => 'ASC'],
     		];

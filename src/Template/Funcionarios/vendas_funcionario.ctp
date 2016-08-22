@@ -36,6 +36,11 @@
 		</select>
 	</div>
 </div>
+<div class='row'>
+	<div class='large-5 large-offset-7'>
+		<h4> <?= $total ? 'Total vendido:' . $this->Number->currency($total) : ''; ?></h4>
+	</div>
+</div>
 
 <div class="funcionarios index large-8 large-offset-2 medium-10 medium-offset-1 columns">
     <table cellpadding="0" cellspacing="0">

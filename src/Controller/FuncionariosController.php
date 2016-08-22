@@ -157,6 +157,7 @@ class FuncionariosController extends AppController
         
         $mes = '';
         $ano = '';
+        $total = 0;
         
         if( $this->request->query('mes') )
         {
@@ -165,6 +166,8 @@ class FuncionariosController extends AppController
         	$now = Time::now(); //configura o ano padrão corrente
         	$ano = $now->year;
         	$query = $query->where(['YEAR(data)'=>$ano]);
+        	$sub_query = clone $query;
+        	$total = $sub_query->select(['total'=>'SUM(Vendas.total)'])->first()->total;
         }
         if( $this->request->query('ano') )
         {
@@ -174,7 +177,7 @@ class FuncionariosController extends AppController
         
         $vendas = $this->paginate($query);
         
-        $this->set(compact('vendas', 'ano', 'mes'));
+        $this->set(compact('vendas', 'ano', 'mes', 'total'));
         $this->set('_serialize', ['vendas']);
     }
 }
