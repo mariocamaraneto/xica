@@ -72,11 +72,11 @@ class ProdutosTable extends Table
 
         $validator
             ->decimal('custo_bruto')
-            ->allowEmpty('custo_bruto');
+            ->notEmpty('custo_bruto');
 
         $validator
             ->decimal('preco')
-            ->allowEmpty('preco');
+            ->notEmpty('preco');
 
         $validator
             ->allowEmpty('descricao');
