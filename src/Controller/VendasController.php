@@ -20,14 +20,47 @@ class VendasController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Clientes', 'Funcionarios'],
-        	'order' => ['data'=>'DESC'],
-        	'conditions' => ['cancelada'=>'0'] ,
-        ];
-        $vendas = $this->paginate($this->Vendas);
+    	$query = $this->Vendas->find('all');
+    	$query = $query->contain(['Clientes', 'Funcionarios']);
+    	$query = $query->order(['data'=>'DESC']);
+    	$query = $query->where(['Vendas.cancelada'=>'0'] );
+    	
+    	$dia = '';
+    	$mes = '';
+    	$ano = '';
+    	$total = 0;
+    	
+    	if( $this->request->query('dia') )
+    	{
+    		$dia = $this->request->query('dia');
+    		$query = $query->where(['DAY(data)'=>$dia]);
+    		$now = Time::now(); //configura o ano padrão corrente
+    		$mes = $now->month;
+    		$query = $query->where(['MONTH(data)'=>$mes]);
+    		$ano = $now->year;
+    		$query = $query->where(['YEAR(data)'=>$ano]);
+    		$sub_query = clone $query;
+    		$total = $sub_query->select(['total'=>'SUM(Vendas.total)'])->first()->total;
+    	}
+    	if( $this->request->query('mes') )
+    	{
+    		$mes = $this->request->query('mes');
+    		$query = $query->where(['MONTH(data)'=>$mes]);
+    		$now = Time::now(); //configura o ano padrão corrente
+    		$ano = $now->year;
+    		$query = $query->where(['YEAR(data)'=>$ano]);
+    		$sub_query = clone $query;
+    		$total = $sub_query->select(['total'=>'SUM(Vendas.total)'])->first()->total;
+    	}
+    	if( $this->request->query('ano') )
+    	{
+    		$ano = $this->request->query('ano');
+    		$query = $query->where(['YEAR(data)'=>$ano]);
+    	}
+    	
+        $vendas = $this->paginate($query);
 
-        $this->set(compact('vendas'));
+        $this->set(compact('vendas', 'dia', 'mes', 'ano', 'total'));
         $this->set('_serialize', ['vendas']);
     }
     
