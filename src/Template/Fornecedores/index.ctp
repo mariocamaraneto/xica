@@ -1,7 +1,7 @@
 <div class='row'>
 		<div id='parallelogram'></div>
 		<div id="trianguloTituloTela">
-		<h3 id='tituloTela'> Lista de Fornecedores</h3>
+		<h3 id='tituloTela'> Lista de Fornecedoras</h3>
 		</div>	
 </div>
 
