@@ -1,14 +1,13 @@
-<nav class="large-2 columns" id="actions-sidebar">
-	<ul class="side-nav">
-		<li class="heading"><?= __('Actions') ?></li>
-		<li><?= $this->Html->link(__('List Fornecedores'), ['action' => 'index']) ?></li>
-	</ul>
-</nav>
-<div class="fornecedores form large-9 large-offset-1 medium-8 columns content">
+<div class='row'>
+		<div id='parallelogram'></div>
+		<div id="trianguloTituloTela">
+		<h3 id='tituloTela'> Cadastro de Fornecedoras</h3>
+		</div>	
+</div>
+
+<div class="fornecedores form large-8 large-offset-2 medium-10 medium-offset-1 columns">
     <?= $this->Form->create($fornecedor)?>
     <fieldset>
-		<legend><?= __('Add Fornecedor') ?></legend>
-
 		<fieldset>
 			<legend>Informações Básicas</legend>
 			<div class='row'>
