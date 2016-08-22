@@ -47,6 +47,7 @@ function pesquisaAjax() {
 
 function mostraOpcoes(clientes) {
 	$('#myModal').show();
+	$('#caixaTotalRecebimento').hide();
 	// retira elementos de janelas anteriores
 	$('#listaDeClientesModal').html('');
 	// apresenta
@@ -76,6 +77,7 @@ function selecionaOpcao() {
 	
 	// fecha a janela com opções de clientes
 	$('#myModal').hide();
+	$('#caixaTotalRecebimento').show();
 	
 };
 //############ FIM - PESQUISA CLIENTE  ##########################
@@ -152,4 +154,5 @@ function numeroParaDinheiro(numero) {
 $('#fecharModal').on('click', function fecharModal(){
 //	// fecha a janela com opções
 	$('#myModal').hide();
+	$('#caixaTotalRecebimento').show();
 });
