@@ -1,4 +1,17 @@
-# CakePHP Application Skeleton
+# Sistema web para controle de estoque, vendas, crediário e consignados.
+
+O sistema foi personalizado para um brechô que possuia a necessidade de controla os consignados das roupas deixadas na loja para vendas. O pagamento só era realizado 30 dias depois de a roupa ter sido vendida. Essa roupa tambem pordeira ser adicionada a um crediario que aceita pagamentos parcelados.
+O sistema é capaz de gerar relatorios de vendas, lucros, quais peças de roupas devem ser reembolsadas entre outros relatorios pertinentes ao cliente.
+O sistema utiliza um painel de login para segurança das informações guardando logs dos usuários com as operações realizadas dentro do sistema.
+
+
+
+
+
+
+
+
+# FrameWork Instalation - CakePHP Application Skeleton 
 
 [![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
 [![License](https://img.shields.io/packagist/l/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
